@@ -1,0 +1,3 @@
+        DEV LOG
+• npm run dev = run project
+ 
