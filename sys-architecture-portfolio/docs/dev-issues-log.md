@@ -90,3 +90,104 @@ Understand folder structure before working.
 ---------------------------------------------
 
 ## END OF ENTRY
+--------------------------------------------
+#   NEW ENTRY 3/4
+## ISSUE 1 - PARSING 
+
+
+
+# 🐛 Tailwind Not Working (Vite + Tailwind v4)
+
+## Issue
+
+Tailwind CSS was installed but styles were not applying in the app. No errors were shown in the browser, which made the issue confusing.
+
+---
+
+## Root Cause
+
+I was using **Tailwind CSS v4**, which no longer works automatically with PostCSS in Vite.
+
+Even though I had:
+
+* `tailwindcss` installed
+* `postcss` and `autoprefixer` installed
+* CSS imported with `@import "tailwindcss";`
+
+…it still didn’t work because the **Tailwind Vite plugin was not configured**.
+
+---
+
+## Fix
+
+### 1. Install Tailwind Vite plugin
+
+```bash
+npm install -D @tailwindcss/vite
+```
+
+### 2. Update `vite.config.js`
+
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+```
+
+### 3. Ensure correct CSS setup
+
+```css
+@import "tailwindcss";
+```
+
+### 4. Restart dev server
+
+```bash
+npm run dev
+```
+
+---
+
+## Secondary Issue
+
+Ran into this error:
+
+```
+npm error Missing script: "dev"
+```
+
+### Cause
+
+I was running the command in the **wrong directory** (parent folder instead of the actual project folder).
+
+### Fix
+
+```bash
+cd sys-architecture-portfolio
+npm run dev
+```
+
+---
+
+## Key Takeaways
+
+* Tailwind v4 requires framework-specific plugins (like `@tailwindcss/vite`)
+* Installing a package ≠ configuring it
+* Always confirm you're in the correct project directory before running scripts
+* Silent failures (no errors) usually mean a config issue
+
+---
+
+## Notes
+
+This issue looked like a PostCSS problem at first, but PostCSS was correctly installed. The real issue was missing integration with Vite.
+
+
+
