@@ -14,6 +14,8 @@ Imports
 */
 
 import Navbar from "./components/Navbar"
+import Hero from "./components/Hero"
+
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
 
         {/*Main Content Area */}
         <main className="max-w-6xl mx-auto px-6 py-20 space-y-32">
+          <Hero name= "Makayla Harrison" role= "Junior Developer"/>
           
         </main>
 

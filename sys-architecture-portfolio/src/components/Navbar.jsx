@@ -32,7 +32,7 @@ export default function Navbar(){
     -tracking-wider -> increased letter spaceing */}
 
             <h1 className="text-cyan-400 font-bold tracking-wider">
-            System_OS
+            MH_OS v1.0.0
             </h1>
 {/*-------------------------------------------------------------------------------------
                         Links Section
