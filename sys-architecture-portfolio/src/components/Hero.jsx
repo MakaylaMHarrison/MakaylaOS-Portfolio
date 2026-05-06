@@ -15,7 +15,7 @@ import avatar from "../assets/avatar.png"
 import {motion as Motion } from "framer-motion"
 
 //React component that displays a hero section witha name and role (uses default values if none are provided)
-export default function Hero({ name= "Makayla  Harrison", role= "Junior Developer"}) {
+export default function Hero({ name= "Makayla Harrison", role= "Junior Developer"}) {
     return (
         <Motion.section
         
@@ -88,7 +88,7 @@ export default function Hero({ name= "Makayla  Harrison", role= "Junior Develope
                               transition={{ delay: 0.2 }}
                             >
                                 {/*Label + Value */}
-                                <p className="text-cyan-400 text-2xl font-semibold">
+                                <p className="text-blue-400 text-2xl font-semibold">
                                     User: <span className="text-white"> {name} </span>
                               </p>
 
@@ -113,7 +113,7 @@ export default function Hero({ name= "Makayla  Harrison", role= "Junior Develope
                                 animate={{y: 0, opacity: 1}}
                                 transition={{ delay: 0.35 }}
                             >
-                                <p className="text-cyan-400 text-2xl font-semibold">
+                                <p className="text-blue-400 text-2xl font-semibold">
                                     Role: <span className="text-white">{role}</span>
                                 </p>
 
@@ -135,7 +135,7 @@ export default function Hero({ name= "Makayla  Harrison", role= "Junior Develope
                                 transition={{delay: 0.5}}
                             >
                                 <p className="text-green-400 text-2xl font-semibold">
-                                    Status: <span className="text-white">Building Systems...</span>
+                                    Status: <span className="text-green">Building Systems...</span>
                                 </p>
 
                                 <div
