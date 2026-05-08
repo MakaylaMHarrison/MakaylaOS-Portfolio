@@ -1,4 +1,4 @@
-// File: FlowLinesSVG.jsx - A component that renders an animated SVG connector line between components
+==========================================// File: FlowLinesSVG.jsx - A component that renders an animated SVG connector line between components
 // Imports 'motion' from Framer Motion to animate SVG properties like path length and offset
 import { motion } from "framer-motion"
 
