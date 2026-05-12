@@ -44,3 +44,47 @@ export default function FlowLinesSVG({ active }) {
     </svg>
   )
 }
+=======================================
+import { motion as Motion } from "framer-motion"
+
+export default function FlowLinesSVG({ active }) {
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      viewBox="0 0 1000 300"
+      preserveAspectRatio="none"
+    >
+      {/* Main Connection Path */}
+      <Motion.path
+        id="mainPath" // Added ID so the circle can find this path
+        d="M 150 150 C 350 0, 850 150 1000 150" // Closed the Bezier coordinates
+        stroke={active ? "cyan" : "rgba(0,180,255,0.3)"}
+        strokeWidth={2}
+        fill="none"
+        initial={{ pathLength: 0 }} // Fixed typo: 'initial'
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1.5 }}
+      />
+
+      {/* Data Packet: The circle traveling the line */}
+      <Motion.circle
+        r={4}
+        fill="cyan"
+        style={{ 
+          /* CRITICAL: offsetPath tells the circle which line to follow.
+             The 'path()' function takes the same coordinates as the 'd' attribute above.
+          */
+          offsetPath: "path('M 150 150 C 350 0, 850 150 1000 150')", 
+          offsetDistance: "0%" 
+        }}
+        // If active, animate from 0% of the path to 100%
+        animate={{ offsetDistance: active ? "100%" : "0%" }}
+        transition={{
+          repeat: Infinity,
+          duration: 3,
+          ease: "linear"
+        }}
+      />
+    </svg>
+  )
+}

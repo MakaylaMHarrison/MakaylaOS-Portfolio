@@ -52,10 +52,10 @@ export default function SystemCard({ title, children, activePathTrigger}) {
                 {title}
             </h3>
 
-            {/* Node Content*/}
+            {/* NODE CONTENT:Renders the nested children pass to the component to custom spacing*/}
             <div className="text-gray-300 text-sm space-y-2">
                 {children}
-            </div> //Renders the nested children pass to the component to custom spacing
+            </div> 
 
             {/* Heartbeat pulse dot */}
             <Motion.div

@@ -21,7 +21,8 @@ Tailwind Classes:
 //Export a default React functional compenent name Navbar
 export default function Navbar(){
      return(
-        <nav className= "max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+        <nav className="border-b border-cyan-400/60 bg-slate-900/69 backdrop-blur-lg sticky top-0 z-50 ">
+            <div className= "max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
 
 {/*----------------------------------------------------------------------------
                         Logo Section
@@ -31,9 +32,9 @@ export default function Navbar(){
     -font-bold -> bold text
     -tracking-wider -> increased letter spaceing */}
 
-            <h1 className="text-cyan-400 font-bold tracking-wider">
-            MH_OS v1.0.0
-            </h1>
+                <h1 className="text-cyan-400 font-bold tracking-wider">
+                    MH_OS v1.0.0
+                </h1>
 {/*-------------------------------------------------------------------------------------
                         Links Section
 ---------------------------------------------------------------------------------------- 
@@ -45,10 +46,14 @@ export default function Navbar(){
     -Hover:text-cyan-400 -> changes color on hover
     -Transition -> smooth color transition*/}
 
-            <div className="space-x-6 text-gray-300">
-                <a href= "#" className="hover:text-cyan-400 transition">Github</a>
-                <a href= "#" className="hover:text-cyan-400 transition">Contact</a>
+                <div className="space-x-6 text-gray-300">
+                    <a href= "#" className="hover:text-cyan-400 transition">Github</a>
+                    <a href= "#" className="hover:text-cyan-400 transition">Contact</a>
+                </div>
+
+
             </div>
+        
  
         </nav>
         
