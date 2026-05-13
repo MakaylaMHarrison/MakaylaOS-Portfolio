@@ -26,6 +26,28 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
   }
+
+    /* Custom animation for the CPU pulse */
+  @keyframes slow-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05); /* Slight grow */
+      opacity: 0.8;           /* Slight fade */
+  }
+
+
+  .animate-cpu-pulse {
+    animation: slow-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+
+
+
+
+
 }
 
 /* 3. Global CSS that doesn't fit into the "Utility" world goes here */

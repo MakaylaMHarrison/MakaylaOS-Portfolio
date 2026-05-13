@@ -20,7 +20,7 @@ export default function Hero({ name= "Makayla Harrison", role= "Junior Developer
         <Motion.section
         
             //Main container width + center alignment on page
-            className="max-w-5xl mx-auto"
+            className="max-w-2xl mx-auto"
 
             //Entry animation (slight zoom + fade in)
             initial={{ opacity: 0, scale: 0.96 }} //starting state of animation scale:slightly smaller than normal

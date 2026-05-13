@@ -9,6 +9,7 @@
   /* Defining the animations as theme variables makes them available as Tailwind classes */
   --animate-fade-up: fade-up 0.8s ease-out forwards;
   --animate-blink: blink 1s step-start infinite;
+  --animate-cpu-pulse: slow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   /* Custom Keyframes - Placed inside the theme block in v4 */
   @keyframes fade-up {
@@ -26,6 +27,21 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
   }
+
+  /*Custom animiation for the CPU pulse*/
+  @keyframes slow-pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05); /*slight glow */
+      opacity: 0.8; /* slightl fade */
+
+    }
+  }
+
+  
 }
 
 /* 3. Global CSS that doesn't fit into the "Utility" world goes here */

@@ -4,7 +4,21 @@
 ================================================================
 Simple top navigation
 
+*/
 
+/*
+========================================================
+            Imports
+========================================================
+*/
+
+//import the system icon
+ import CpuChip  from "./CpuChip";
+ import React from 'react';
+
+
+
+/*
 -------------------------------------------
 Naviagation Section
 --------------------------------------------
@@ -22,7 +36,7 @@ Tailwind Classes:
 export default function Navbar(){
      return(
         <nav className="border-b border-cyan-400/60 bg-slate-900/69 backdrop-blur-lg sticky top-0 z-50 ">
-            <div className= "max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
+            <div className= "max-w-6xl mx-auto px-6 py-2 flex justify-between items-center">
 
 {/*----------------------------------------------------------------------------
                         Logo Section
@@ -32,9 +46,34 @@ export default function Navbar(){
     -font-bold -> bold text
     -tracking-wider -> increased letter spaceing */}
 
-                <h1 className="text-cyan-400 font-bold tracking-wider">
-                    MH_OS v1.0.0
-                </h1>
+                {/* LEFT SIDE ICON */}
+                <div className="flex items-center space-x-2">
+                    <CpuChip    />
+
+                    <h1 className="text-white font-bold tracking-tighter text-xl font-mono">
+                        MAKAYLA_OS 
+                    </h1>
+
+                    {/* VERSION BADGE:  */}
+                    <span className="bg-cyan-950/50 border border-cyan-500/30 text-cyan-500 text-[10px] px-2 py-0.5 rounded tracking-widest font-mono">
+                        v1.0.0
+                    </span> 
+                </div>
+
+                {/* RIGHT SIDE */}
+                <div className="flex items-center space-x-8 text-sm font-mono">
+
+                    {/*GREEN STATUS DOT */}
+                    <div className="flex items-center space-x-2">
+                        <span className="relative flex h-2 w-2">
+                            <span className="absolute inline-flex h-full w-full 
+                            rounded-full bg-green-400 opacity-75"></span>
+                            </span>
+                            <span className="text-white-400 uppercase tracking-tight"> 
+                                Systems Online
+                            </span>
+                    </div>               
+            
 {/*-------------------------------------------------------------------------------------
                         Links Section
 ---------------------------------------------------------------------------------------- 
@@ -46,9 +85,9 @@ export default function Navbar(){
     -Hover:text-cyan-400 -> changes color on hover
     -Transition -> smooth color transition*/}
 
-                <div className="space-x-6 text-gray-300">
-                    <a href= "#" className="hover:text-cyan-400 transition">Github</a>
-                    <a href= "#" className="hover:text-cyan-400 transition">Contact</a>
+                
+                    <a href= "#" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Github</a>
+                    <a href= "#" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Contact</a>
                 </div>
 
 
