@@ -1,135 +1,137 @@
-// Hero.jsx (Final refined adjustments with comments)
+/*
+==============================================
+Hero.jsx
+==============================================
+This is the file for your profile bio user system panel
+REDO THIS FILE TO UNDERSTAND <--
+*/
 
-import { motion as Motion } from "framer-motion"
-import avatar from "../assets/avatar.png"
+/*
+=========================================
+Imports
+=========================================
+*/
+import avatar from "../assets/avatar.png";
+import { motion as Motion } from "framer-motion";
 
-// React component that displays a hero section with a name and role (uses default values if none are provided)
+export default function Hero({ name = "Makayla Harrison", role = "Junior Developer" }) {
+  // Define the complex highlight string to reuse it for all 4 sides
+  const hotHighlight = "linear-gradient(to right, transparent, #22d3ee 20%, #ffffff 50%, #22d3ee 80%, transparent)";
+  const hotHighlightVertical = "linear-gradient(to bottom, transparent, #22d3ee 20%, #ffffff 50%, #22d3ee 80%, transparent)";
 
-export default function Hero({ name = "Kaya Harrison", role = "Full Stack Developer" }) {
   return (
     <Motion.section
-      // Main container width + center alignment on page
-      className="max-w-5xl mx-auto"
-      // Entry animation (slight zoom + fade in)
-      initial={{ opacity: 0, scale: 0.96 }}
+      className="max-w-2xl mx-auto p-4"
+      initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.8 }}
     >
+      <div className="relative group p-[1px] bg-cyan-950/30">
+        
+        {/* 1. LAYERED BORDER HIGHLIGHTS (The Cyan-White-Cyan transition) */}
+        {/* Top Rail */}
+        <div 
+          className="absolute top-[-1px] left-0 w-full h-[2px] z-30 shadow-[0_0_15px_rgba(34,211,238,0.8)]" 
+          style={{ background: hotHighlight }}
+        />
+        {/* Bottom Rail */}
+        <div 
+          className="absolute bottom-[-1px] left-0 w-full h-[2px] z-30 shadow-[0_0_15px_rgba(34,211,238,0.8)]" 
+          style={{ background: hotHighlight }}
+        />
+        {/* Left Rail */}
+        <div 
+          className="absolute top-0 left-[-1px] h-full w-[2px] z-30 shadow-[0_0_15px_rgba(34,211,238,0.8)]" 
+          style={{ background: hotHighlightVertical }}
+        />
+        {/* Right Rail */}
+        <div 
+          className="absolute top-0 right-[-1px] h-full w-[2px] z-30 shadow-[0_0_15px_rgba(34,211,238,0.8)]" 
+          style={{ background: hotHighlightVertical }}
+        />
 
-      {/* OUTER FRAME
-          - Acts like a glowing border container
-          - No padding to avoid "white frame" illusion
-          - Strong neon glow for sci-fi effect */}
-      <div className="border-2 border-cyan-400 shadow-[0_0_50px_rgba(34,211,238,0.6)]">
+        {/* 2. GLASS PANEL BODY */}
+        <div className="relative flex items-stretch bg-[#020617]/95 backdrop-blur-3xl overflow-hidden border border-white/10">
+          
+          {/* Subtle Grid Overlay (Matches the target's background texture) */}
+          <div className="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
-        {/* MAIN RECTANGLE
-            - No rounded edges
-            - Radial gradient: darker center, darker edges (less washed out)
-            - Gives depth instead of flat bright blue */}
-        <div
-          className="flex items-stretch border border-cyan-500"
-          style={{
-            background: "radial-gradient(circle at center, #020617 0%, #0a1f44 40%, #020617 100%)"
-          }}
-        >
-
-          {/* AVATAR SECTION (30%)
-              - Fixed proportion of layout
-              - Centered image with glow border */}
-          <div className="w-[30%] flex items-center justify-center p-4">
-            <div
-              // Glowing square around avatar
-              className="w-full h-full border border-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.5)]"
-            >
+          {/* AVATAR SECTION */}
+          <div className="w-[35%] p-6 flex items-center justify-center relative">
+            <div className="relative w-full aspect-square border border-cyan-500/40 p-1 bg-cyan-900/20 shadow-[0_0_20px_rgba(34,211,238,0.1)]">
               <img
                 src={avatar}
                 alt="avatar"
-                // Ensures image fully fills container
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover brightness-110 contrast-125 rounded-sm"
               />
+              {/* Inner frame glow */}
+              <div className="absolute inset-0 border border-white/10 pointer-events-none" />
             </div>
           </div>
 
-          {/* INFO SECTION (70%)
-              - Vertically aligned toward top (like header UI)
-              - Horizontally centered text block
-              - Pulled closer to avatar visually */}
-          <div className="w-[70%] flex flex-col justify-start pt-4 items-center">
-
-            {/* TEXT CONTAINER
-                - Controls max width so lines stretch nicely
-                - Centered text for balanced layout */}
-            <div className="w-full max-w-2xl text-center">
-
-              {/* USER SECTION */}
-              <Motion.div
-                className="py-3"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                {/* Label + value */}
-                <p className="text-cyan-400 text-2xl font-semibold">
-                  User: <span className="text-white">{name}</span>
-                </p>
-
-                {/* Divider line
-                    - Full width of container
-                    - Gradient creates soft glowing center */}
-                <div
-                  className="mt-2 h-[2px] w-full"
-                  style={{
-                    background:
-                      "linear-gradient(to right, #020617, #38bdf8, #ffffff, #38bdf8, #020617)"
-                  }}
-                />
-              </Motion.div>
-
-              {/* ROLE SECTION */}
-              <Motion.div
-                className="py-3"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.35 }}
-              >
-                <p className="text-cyan-400 text-2xl font-semibold">
-                  Role: <span className="text-white">{role}</span>
-                </p>
-
-                <div
-                  className="mt-2 h-[2px] w-full"
-                  style={{
-                    background:
-                      "linear-gradient(to right, #020617, #38bdf8, #ffffff, #38bdf8, #020617)"
-                  }}
-                />
-              </Motion.div>
-
-              {/* STATUS SECTION */}
-              <Motion.div
-                className="py-3"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-              >
-                <p className="text-green-400 text-2xl font-semibold">
-                  Status: <span className="text-white">Building systems...</span>
-                </p>
-
-                <div
-                  className="mt-2 h-[2px] w-full"
-                  style={{
-                    background:
-                      "linear-gradient(to right, #020617, #38bdf8, #ffffff, #38bdf8, #020617)"
-                  }}
-                />
-              </Motion.div>
-
+          {/* INFO SECTION */}
+          <div className="w-[65%] flex flex-col justify-center py-8 pr-10 font-mono">
+            
+            {/* User Data Row */}
+            <div className="relative mb-8 group/row">
+              <div className="flex items-baseline space-x-4">
+                <span className="text-cyan-400 uppercase text-md tracking-[0.3em] font-bold opacity-80">User:</span>
+                <span className="text-white text-2xl font-light tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                  {name}
+                </span>
+              </div>
+              {/* Data underline - also uses the cyan-white-cyan logic */}
+              <div 
+                className="h-[1px] w-full mt-2 opacity-40" 
+                style={{ background: "linear-gradient(to right, #22d3ee, #ffffff, transparent)" }}
+              />
             </div>
 
+            {/* Role Data Row */}
+            <div className="relative mb-6">
+              <div className="flex items-baseline space-x-4">
+                <span className="text-cyan-400 uppercase text-md tracking-[0.3em] font-bold opacity-80">Role:</span>
+                <span className="text-slate-200 text-2xl font-light tracking-wide">
+                  {role}
+                </span>
+              </div>
+              <div 
+                className="h-[1px] w-full mt-2 opacity-30" 
+                style={{ background: "linear-gradient(to right, #22d3ee, #ffffff, transparent)" }}
+              />
+            </div>
+
+           {/* Status Row */}
+<div className="flex items-center space-x-4">
+  <span className="text-green-500 uppercase text-md tracking-[0.3em] font-bold opacity-80">
+    Status:
+  </span>
+
+  <div className="flex items-end space-x-2 leading-none">
+    {/* Font size matches your 'Role' (text-2xl) and mono font stack */}
+    <span className="text-green-400 text-2xl  font-mono tracking-tighter">
+      Building Systems...
+    </span>
+
+    {/* THE TRIANGLE: 
+        - translate-y-[2px] aligns the top edge with the center of the three dots
+        - cursor-pointer makes it feel like a menu "more" button
+    */}
+    <Motion.div
+      animate={{ opacity: [1, 0, 1] }}
+      transition={{ 
+        repeat: Infinity, 
+        duration: 0.8, 
+        ease: "steps(2)" 
+      }}
+      className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[10px] border-t-green-500 translate-y-[-4px] cursor-pointer hover:border-t-white transition-colors"
+      title="More Options"
+    />
+  </div>
+</div>
           </div>
         </div>
       </div>
     </Motion.section>
-  )
+  );
 }

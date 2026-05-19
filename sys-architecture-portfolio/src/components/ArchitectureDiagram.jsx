@@ -1,67 +1,118 @@
 /*
 =======================================================================
 ArchitectureDiagram.jsx
-======================================================================
-This file is the parent container that coordinated the nodes and animations
+=======================================================================
+Master dashboard orchestration framework. Manages unified layout matrices,
+HTML node injection nodes, and central path state contexts.
 */
+import { useState } from "react";
+import SystemCard from "./SystemCard";
+import FlowLinesSVG from "./FlowLinesSVG";
 
-/*
-==============================================
-            Imports
-=============================================
-*/
-//imports the useState hook to manage interaction states across different componets
-import {useState} from "react"
-import SystemCard from "./SystemCard"
-import FlowLinesSVG from "./FlowLinesSVG"
+// Inline Core Graphic Components for Node Header Icons
+const ServerIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+);
+
+const ClientIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+);
+
+const DatabaseIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+);
+
+const StreamIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+);
 
 export default function ArchitectureDiagram() {
-    //Local state to track if user is hovering of the node/system cards
-    //activePath will be true when mouse is over a card and false when mouse leaves
-    const [activePath, setActivePath]= useState(false)
-    return (
-        //Outer section wrapper or boundry with relative positioning to anchor absolute children
-        <section className="relative">
+    const [activeNodeId, setActiveNodeId] = useState(null);
 
-            {/* RENDERS THE MAIN SECTION TITLES */}
-            <h2 className="text-3xl font-bold text-cyan-400 mb-12">
-                System Overview 
+    const getLabelColor = (nodeId) => activeNodeId === nodeId ? 'text-cyan-400' : 'text-slate-500';
+
+    return (
+        <section className="relative w-full min-h-screen px-8 pt-4 pb-12 font-mono flex flex-col">
+
+            {/* HEADER METADATA BRANDING */}
+            <h2 className="text-3xl font-bold text-white mb-2 tracking-wide uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                
             </h2>
 
-            {/* Wrapper to stack the SVG lines and the Grid on top of each other */}
-            <div className="relative">
+            {/* MASTER RELATIVE WORKSPACE CONTAINER */}
+            <div className="relative w-full max-w-5xl mx-auto flex-grow min-h-[650px] mt-4">
+                
+                {/* BACKPLANE PATH CIRCUITS */}
+                <FlowLinesSVG currentActiveId={activeNodeId} />
 
-                {/* THE SVG ANIMATION LAYER: 'active prop tells it when to start the data pulse*/}
-                <FlowLinesSVG active={activePath} />
+                {/* FOREGROUND HTML INTERACTIVE HOVER LAYER */}
+                <div className="absolute inset-0 z-10 pointer-events-none">
 
-                {/* THE LAYER FRID FOR THE CARDS: 'z-10' ensures cards sit above the SVG lines*/}
-                <div className="grid md:grid-cols-3 gap-10 relative z-10">
+                    {/* 1. SERVER_CORE (Top Anchor Center) */}
+                    <div className="absolute top-[0%] left-1/2 -translate-x-1/2 pointer-events-auto">
+                        <SystemCard title="SERVER_CORE" id="server" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ServerIcon}>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('server')} font-bold`}>RUN:</span>
+                                <span className="text-white">Node</span>
+                            </div>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('server')} font-bold`}>RTR:</span>
+                                <span className="text-white">Express</span>
+                            </div>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('server')} font-bold`}>VAL:</span>
+                                <span className="text-white">Zod</span>
+                            </div>
+                        </SystemCard>
+                    </div>
 
-                    {/* THE FIRST NODE: Passes it title, internal text (children), and the state setter function*/}
-                    <SystemCard title="CLIENT_SIDE" activePathTrigger={setActivePath}>
-                        <p>Framework: React </p>
-                        <p>State: React Query </p>
-                        <p>Style: Tailwind </p>
-                    </SystemCard>
+                    {/* 2. CLIENT_SIDE (Mid-Left Wing Anchor) */}
+                    <div className="absolute top-[28%] left-[20%] -translate-x-1/2 pointer-events-auto">
+                        <SystemCard title="CLIENT_SIDE" id="client" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ClientIcon}>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('client')} font-bold`}>FW:</span>
+                                <span className="text-white">React</span>
+                            </div>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('client')} font-bold`}>STATE:</span>
+                                <span className="text-white">Query</span>
+                            </div>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('client')} font-bold`}>CSS:</span>
+                                <span className="text-white">Tailwind</span>
+                            </div>
+                        </SystemCard>
+                    </div>
 
-                    {/* SECOND NODE: Reuses the logic if this is hovered activePath become true */}
-                    <SystemCard title="SERVER_CORE" activePathTrigger={setActivePath} >
-                        <p>Runtime: Node </p>
-                        <p>Router: Express</p>
-                        <p>Validation: Zod </p>
-                    </SystemCard>
+                    {/* 3. DATABASE (Mid-Right Wing Anchor) */}
+                    <div className="absolute top-[28%] right-[20%] translate-x-1/2 pointer-events-auto">
+                        <SystemCard title="DATABASE" id="db" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={DatabaseIcon}>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('db')} font-bold`}>DB:</span>
+                                <span className="text-white">Postgres</span>
+                            </div>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('db')} font-bold`}>ORM:</span>
+                                <span className="text-white">Drizzle</span>
+                            </div>
+                            <div className="w-full flex justify-between">
+                                <span className={`${getLabelColor('db')} font-bold`}>TYPE:</span>
+                                <span className="text-white">Relational</span>
+                            </div>
+                        </SystemCard>
+                    </div>
 
-                    {/* THIRD NODE: The activePathTrigger prop allows this child to update the parents's state */}
-                    <SystemCard title="DATABASE" activePathTrigeer={setActivePath}>
-                        <p>Database: PostgreSQL</p>
-                        <p>ORM: Drizzle</p>
-                        <p>Schema: Relational</p>
-
-                    </SystemCard>
-
+                    {/* 4. OUTPUT_STREAM (Lower Anchor Center) */}
+                    <div className="absolute top-[58%] left-1/2 -translate-x-1/2 pointer-events-auto">
+                        <SystemCard title="OUTPUT_STREAM" id="output" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={StreamIcon}>
+                            <div className="text-white font-light tracking-wide text-sm pt-1 text-center w-full">
+                                Project_Registry
+                            </div>
+                        </SystemCard>
+                    </div>
 
                 </div>
             </div>
         </section>
-    )
+    );
 }
