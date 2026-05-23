@@ -2,7 +2,7 @@ DEV ISSUE LOG — React / Vite / Tailwind Setup
 
 ---------------------------------------------------
 
-## ISSUE 1 — npm run dev not working
+## ISSUE 1 — npm run dev not working 
 
 Problem:
 Terminal said “Missing script: dev”.
@@ -11,7 +11,7 @@ Cause:
 I was running the command in the wrong folder — not inside the actual React/Vite app directory.
 
 Fix:
-Use:
+Use:    
 pwd
 
 Confirm I am inside the React project folder, then run:
@@ -190,4 +190,28 @@ npm run dev
 This issue looked like a PostCSS problem at first, but PostCSS was correctly installed. The real issue was missing integration with Vite.
 
 
+
+
+
+========================================
+## ISSUE 5 - WHITE SCREEN OF DEATH
+
+Problem: 
+Preview Screen is white while building coding
+
+Cause:
+When you run a react project a tool in the background Vite the is consistantly scan the code to make sure it is mathematically syntactically perfect.
+
+Fix:
+Write the shell first; Before adding all the line-by-line code write the 
+bare minimum to make the file vaild.
+## Code:  
+export default function ArchitectureDiagram (){
+  return(
+    <div></div>
+  )
+}
+
+Lesson:
+Make sure you have the function it needs to re
 

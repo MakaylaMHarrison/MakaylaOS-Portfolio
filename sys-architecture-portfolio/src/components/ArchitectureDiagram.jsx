@@ -2,7 +2,7 @@
 =======================================================================
 ArchitectureDiagram.jsx
 =======================================================================
-Master dashboard orchestration framework. Manages unified layout matrices,
+Master dashboard orchestration framework.Manages unified layout matrices,
 HTML node injection nodes, and central path state contexts.
 */
 import { useState } from "react";
@@ -116,3 +116,4 @@ export default function ArchitectureDiagram() {
         </section>
     );
 }
+

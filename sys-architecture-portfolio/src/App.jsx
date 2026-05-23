@@ -17,6 +17,7 @@ import Navbar from "./components/Navbar"
 import Hero from "./components/Hero"
 import ArchitectureDiagram from "./components/ArchitectureDiagram"
 import Terminal from "./components/Terminal"
+import DeployedModule from "./components/DeployedModule"
 
 
 
@@ -39,6 +40,9 @@ function App() {
 
           {/* Terminal/ Status Log */}
           <Terminal/>
+
+          {/* Deployed Module */}
+          <DeployedModule/>
 
           
 
