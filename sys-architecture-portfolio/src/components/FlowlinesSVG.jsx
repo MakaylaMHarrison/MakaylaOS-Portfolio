@@ -10,12 +10,13 @@ import { motion as Motion } from "framer-motion";
 
 export default function FlowLinesSVG({ currentActiveId }) {
   
+  // MODIFICATION: Extended coordinates from 950 to 1000 to drop the layout line down further
   const paths = {
     clientServer: "M 200,390 Q 320,390 500,110",
     serverDb: "M 500,110 Q 680,390 800,390",
     serverOutput: "M 500,110 L 500,690",
-    outputTerminal: "M 500,690 L 500,950"
-  };
+    outputTerminal: "M 500,690 L 500,1070" 
+  }; 
 
   const isPathActive = (connection) => {
     // On load, all paths are active (moving dash lines)

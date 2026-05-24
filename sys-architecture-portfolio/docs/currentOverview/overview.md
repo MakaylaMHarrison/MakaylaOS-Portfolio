@@ -44,9 +44,22 @@ BEFORE YOU ADD MORE CODE SCREEN RECORD
     -TRELLO
 ================================================================
 
-ENTRY LOG: 2026.20.05
-FILE:ARCHITECTUREDIAGRAM.JSX
-==================================================================
+
+
+
+
+
+
+
+===============================================================
+ENTRY LOG: 2026.24.05
+FILE:ALL
+==============================================
 DESCRIPTION:
--CURRENTLY DOING:
-    ARCHITECTUREDIAGRAM
+1. MAKE SURE ALL JSX MATCHES .MD FILE
+2. NODE SECTION 
+    ->CHANGE COLOR TEXT AND ICON SEE: TRELLO
+3. NAVBAR ADD ABOUT PROJECTS TAB
+4. PANEL IN HERO.JSX IN LOCATION
+===================================
+

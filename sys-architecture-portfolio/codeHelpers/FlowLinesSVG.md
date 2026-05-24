@@ -1,90 +1,137 @@
-==========================================// File: FlowLinesSVG.jsx - A component that renders an animated SVG connector line between components
-// Imports 'motion' from Framer Motion to animate SVG properties like path length and offset
-import { motion } from "framer-motion"
+/*
+====================================================================
+FlowLinesSVG.jsx
+====================================================================
+Single-layer vector routing matrix. Tier logic completely removed 
+to guarantee visual consistency across all path types.
+*/
 
-// Component receives an 'active' prop, which is a boolean (true/false) to toggle animation states
-export default function FlowLinesSVG({ active }) {
-  return (
-    // The SVG container spans the full parent size and ignores mouse clicks (pointer-events-none)
-    <svg
-      className="absolute inset-0 w-full h-full pointer-events-none z-0"
-      viewBox="0 0 1000 300" // Defines the coordinate system used by the internal paths
-      preserveAspectRatio="none" // Allows the SVG to stretch to fill its container
-    >
+import { motion as Motion } from "framer-motion";
 
-      {/* Main connection path - The physical line between two points */}
-      <motion.path
-        // 'd' defines the path: M = Move to (150,150), C = Cubic Bezier curve with two control points
-        d="M 150 150 C 350 0, 650 0, 850 150"
-        // Conditional styling: turns solid 'cyan' when active, otherwise stays a faint blue
-        stroke={active ? "cyan" : "rgba(0,180,255,0.3)"}
-        strokeWidth={2}
-        fill="none" // Ensures only the line is drawn, not the space inside the curve
-        // initial and animate 'pathLength' create a "drawing" effect when the component loads
-        initial={{ pathLength: 0 }} // Starts at 0% drawn
-        animate={{ pathLength: 1 }} // Animates to 100% drawn
-        transition={{ duration: 1.5 }} // The drawing animation takes 1.5 seconds
-      />
+export default function FlowLinesSVG({ currentActiveId }) {
+  
+  const paths = {
+    clientServer: "M 200,390 Q 320,390 500,110",
+    serverDb: "M 500,110 Q 680,390 800,390",
+    serverOutput: "M 500,110 L 500,690",
+    outputTerminal: "M 500,690 L 500,950"
+  }; 
 
-      {/* Data packet - A small glowing circle that "travels" along the path */}
-      <motion.circle
-        r={4} // Radius of the circle (size of the "packet")
-        fill="cyan"
-        // style used for CSS-based motion path offset
-        style={{ offsetDistance: "0%" }}
-        // If 'active' is true, animate the packet from start (0%) to end (100%) of the path
-        animate={{ offsetDistance: active ? ["0%", "100%"] : ["0%", "0%"] }}
-        transition={{
-          repeat: Infinity, // Loops the animation forever
-          duration: 2,      // It takes 2 seconds for the packet to travel the full line
-          ease: "linear"    // Moves at a constant speed without acceleration/deceleration
-        }}
-      />
+  const isPathActive = (connection) => {
+    // On load, all paths are active (moving dash lines)
+    if (currentActiveId === null) return true;
 
-    </svg>
-  )
-}
-=======================================
-import { motion as Motion } from "framer-motion"
+    switch (connection) {
+      case 'clientServer':
+        return currentActiveId === 'client' || currentActiveId === 'server' || currentActiveId === 'output';
+      case 'serverDb':
+        return currentActiveId === 'db' || currentActiveId === 'server' || currentActiveId === 'output';
+      case 'serverOutput':
+        return currentActiveId === 'server' || currentActiveId === 'output';
+      case 'outputTerminal':
+        return currentActiveId === 'output';
+      default:
+        return false;
+    }
+  };
 
-export default function FlowLinesSVG({ active }) {
   return (
     <svg
-      className="absolute inset-0 w-full h-full pointer-events-none z-0"
-      viewBox="0 0 1000 300"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
+      viewBox="0 0 1000 1000"
       preserveAspectRatio="none"
     >
-      {/* Main Connection Path */}
-      <Motion.path
-        id="mainPath" // Added ID so the circle can find this path
-        d="M 150 150 C 350 0, 850 150 1000 150" // Closed the Bezier coordinates
-        stroke={active ? "cyan" : "rgba(0,180,255,0.3)"}
-        strokeWidth={2}
-        fill="none"
-        initial={{ pathLength: 0 }} // Fixed typo: 'initial'
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1.5 }}
-      />
+      {Object.entries(paths).map(([key, pathD]) => {
+        const isActive = isPathActive(key);
+        const isUserFiltering = currentActiveId !== null;
 
-      {/* Data Packet: The circle traveling the line */}
-      <Motion.circle
-        r={4}
-        fill="cyan"
-        style={{ 
-          /* CRITICAL: offsetPath tells the circle which line to follow.
-             The 'path()' function takes the same coordinates as the 'd' attribute above.
-          */
-          offsetPath: "path('M 150 150 C 350 0, 850 150 1000 150')", 
-          offsetDistance: "0%" 
-        }}
-        // If active, animate from 0% of the path to 100%
-        animate={{ offsetDistance: active ? "100%" : "0%" }}
-        transition={{
-          repeat: Infinity,
-          duration: 3,
-          ease: "linear"
-        }}
-      />
+        // --- SINGLE LAYER STYLING ---
+        // If active: Bright cyan + moving dashes. If muted: Dim blue + static solid line.
+        const strokeColor = isActive ? "#22d3ee" : "rgba(34, 211, 238, 0.25)";
+        const dashArray = isActive ? "12 12" : "0 0"; 
+        const dashSpeed = isActive ? 1.2 : 0; 
+
+        // Packet Kinetics
+        let packetRadius = 5.5;          
+        let packetDuration = 1.8;        
+        let packetOpacity = 1.0;         
+        let packetColor = "#22d3ee";     
+
+        if (isUserFiltering && !isActive) {
+          packetRadius = 1.8;            
+          packetDuration = 6.0;          
+          packetOpacity = 0.25;          
+          packetColor = "#475569";       
+        }
+
+        const isDbReverse = currentActiveId === 'db' && key === 'serverDb';
+        const motionRange = isDbReverse ? ["100%", "0%"] : ["0%", "100%"];
+
+        return (
+          <g key={key}>
+            {/* UNIFIED SINGLE PATH LAYER */}
+            <Motion.path
+              d={pathD}
+              fill="none"
+              strokeWidth={2}
+              style={{ 
+                vectorEffect: "non-scaling-stroke",
+                transition: "none !important"
+              }}
+              strokeDasharray={dashArray}
+              animate={{ 
+                strokeDashoffset: isActive ? [24, 0] : 0,
+                stroke: strokeColor
+              }}
+              transition={{
+                strokeDashoffset: {
+                  repeat: isActive ? Infinity : 0,
+                  duration: dashSpeed,
+                  ease: "linear",
+                },
+                stroke: { duration: 0.3, ease: "easeInOut" }
+              }}
+            />
+
+            {/* DATA PACKET A */}
+            <Motion.circle
+              fill={packetColor}
+              style={{ offsetPath: `path('${pathD}')`, transition: "none !important" }}
+              animate={{ 
+                offsetDistance: motionRange,
+                r: packetRadius,
+                opacity: packetOpacity,
+                filter: isActive ? "drop-shadow(0 0 6px #22d3ee)" : "none"
+              }}
+              transition={{
+                offsetDistance: { repeat: Infinity, duration: packetDuration, ease: "linear" },
+                default: { duration: 0.4, ease: "easeInOut" }
+              }}
+            />
+
+            {/* DATA PACKET B */}
+            <Motion.circle
+              fill={packetColor}
+              style={{ offsetPath: `path('${pathD}')`, transition: "none !important" }}
+              animate={{ 
+                offsetDistance: motionRange,
+                r: packetRadius,
+                opacity: packetOpacity,
+                filter: isActive ? "drop-shadow(0 0 6px #22d3ee)" : "none"
+              }}
+              transition={{
+                offsetDistance: { 
+                  repeat: Infinity, 
+                  duration: packetDuration, 
+                  delay: packetDuration / 2, 
+                  ease: "linear" 
+                },
+                default: { duration: 0.4, ease: "easeInOut" }
+              }}
+            />
+          </g>
+        );
+      })}
     </svg>
-  )
+  );
 }
