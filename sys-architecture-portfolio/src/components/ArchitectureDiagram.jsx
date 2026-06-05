@@ -96,15 +96,15 @@ export default function ArchitectureDiagram() {
                     <div className="absolute top-[0%] left-1/2 -translate-x-1/2 pointer-events-auto">
                         <SystemCard title="SERVER_CORE" id="server" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ServerIcon}>
                             <div className="w-full flex justify-between">
-                                <span className={`${getLabelColor()} font-bold`}>RUN:</span>
-                                <span className="text-white">Node</span>
+                                <span className={`${getLabelColor()} font-bold`}>RUNTIME:</span>
+                                <span className="text-white">Node.js</span>
                             </div>
                             <div className="w-full flex justify-between">
-                                <span className={`${getLabelColor()} font-bold`}>RTR:</span>
+                                <span className={`${getLabelColor()} font-bold`}>ROUTER:</span>
                                 <span className="text-white">Express</span>
                             </div>
                             <div className="w-full flex justify-between">
-                                <span className={`${getLabelColor()} font-bold`}>VAL:</span>
+                                <span className={`${getLabelColor()} font-bold`}>TYPES:</span>
                                 <span className="text-white">Zod</span>
                             </div>
                         </SystemCard>
@@ -132,7 +132,7 @@ export default function ArchitectureDiagram() {
                     <div className="absolute top-[28%] right-[20%] translate-x-1/2 pointer-events-auto">
                         <SystemCard title="DATABASE" id="db" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={DatabaseIcon}>
                             <div className="w-full flex justify-between">
-                                <span className={`${getLabelColor()} font-bold`}>DB:</span>
+                                <span className={`${getLabelColor()} font-bold`}>TYPES:</span>
                                 <span className="text-white">Postgres</span>
                             </div>
                             <div className="w-full flex justify-between">
@@ -140,7 +140,7 @@ export default function ArchitectureDiagram() {
                                 <span className="text-white">Drizzle</span>
                             </div>
                             <div className="w-full flex justify-between">
-                                <span className={`${getLabelColor()} font-bold`}>TYPE:</span>
+                                <span className={`${getLabelColor()} font-bold`}>SCHEMA:</span>
                                 <span className="text-white">Relational</span>
                             </div>
                         </SystemCard>
@@ -150,8 +150,8 @@ export default function ArchitectureDiagram() {
                     <div className="absolute top-[58%] left-1/2 -translate-x-1/2 pointer-events-auto">
                         <SystemCard title="OUTPUT_STREAM" id="output" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={StreamIcon}>
                             {/* MODIFICATION: Changed static descriptive labels on bottom tier module to cyan */}
-                            <div className="text-cyan-400 font-bold tracking-wide text-sm pt-1 text-center w-full">
-                                Project_Registry
+                            <div className="text-cyan-400 font-bold tracking-wide text-lg pt-1 text-center w-full">
+                                Deployed_Modules
                             </div>
                         </SystemCard>
                     </div>

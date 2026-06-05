@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ArchitectureDiagram from "./components/ArchitectureDiagram";
 import DeployedModule from "./components/DeployedModule";
+import Contact from "./components/Contact";
 
 function App() {
   const [activePipeline, setActivePipeline] = useState(null);
@@ -14,17 +15,25 @@ function App() {
       {/* Stripped parent spacing layout rules entirely */}
       <main className="max-w-6xl mx-auto px-6 pt-6 pb-12 w-full flex-grow space-y-0">
         
-        <Hero name="Makayla Harrison" role="Junior Developer" />
+        {/*Wrap Hero with the #hero ID */}
+        <section id="hero">
+          <Hero name="Makayla Harrison" role="Junior Developer" />
+        </section>
 
         <ArchitectureDiagram />
 
-        {/* Set a tight margin header directly above modules */}
-        <div className="relative mt-4 space-y-12">
+        {/* Set a tight margin header directly above modules with #projects ID */}
+        <section id="projects" className=" scroll-mt-20 relative  mt-4 space-y-12">
           <DeployedModule 
             activePipeline={activePipeline} 
             setActivePipeline={setActivePipeline} 
           />
-        </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact">
+          <Contact/>
+        </section>
 
       </main>
 
@@ -35,7 +44,7 @@ function App() {
           <span>STATUS: <span className="text-emerald-400">100% Uptime</span></span>
         </div>
         <div>
-          <span>© 2026 System_Portfolio. All processes terminated gracefully.</span>
+          <span>© 2026 Makayla_OS Portfolio. All processes terminated gracefully.</span>
         </div>
       </footer>
     </div>

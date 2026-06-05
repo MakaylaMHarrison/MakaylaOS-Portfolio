@@ -3,9 +3,9 @@ import { motion as Motion } from "framer-motion";
 export default function ModuleFlowLinesSVG({ currentActiveId }) {
   // ⚡ The canvas now scales fluidly from Y=0 (top of this gap) to Y=100 (bottom of this gap)
   const paths = {
-    m01Terminal: "M 165,0 C 165,50 500,50 500,100", // Left Card center-bottom -> Terminal top-center
-    m02Terminal: "M 500,0 L 500,100",                 // Center Card center-bottom -> Terminal top-center
-    m03Terminal: "M 835,0 C 835,50 500,50 500,100"  // Right Card center-bottom -> Terminal top-center
+    m01Terminal: "M 165,0 C 165,50 500,50 500,200", // Left Card center-bottom -> Terminal top-center
+    m02Terminal: "M 500,0 L 500,200",                 // Center Card center-bottom -> Terminal top-center
+    m03Terminal: "M 835,0 C 835,50 500,50 500,200"  // Right Card center-bottom -> Terminal top-center
   };
 
   const isPathActive = (key) => {

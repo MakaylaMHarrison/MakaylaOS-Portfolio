@@ -1,6 +1,6 @@
+import React from 'react';
 import { motion as Motion, AnimatePresence } from "framer-motion";
 
-// 1. Changed the prop name from activePipeline to targetModuleId to match the parent
 export default function Terminal({ targetModuleId }) {
   const diagnosticLogs = {
     default: [
@@ -14,22 +14,22 @@ export default function Terminal({ targetModuleId }) {
       { type: 'response', text: 'Interface ready.' }
     ],
     m01: [
-      { type: 'cmd', text: 'initialize M_01 // system_classifier' },
+      { type: 'cmd', text: 'initialize M_01' },
       { type: 'response', text: '✔ Next.js serverless route bound.' },
       { type: 'response', text: '↳ parsing taxonomy maps via [Zod]...' },
       { type: 'cmd', text: 'test_pipeline --mode=strict' },
-      { type: 'status', text: '⚡ [CLASSIFIER_CORE]: RUNNING' },
-      { type: 'response', text: '↳ Phase Model Matrix loaded successfully.' },
+      { type: 'status', text: '⚡ [CLASSICATION_ENGINE]: RUNNING' },
+      { type: 'response', text: '↳ Risk Matrix loaded successfully.' },
       { type: 'success', text: '>>> OUTPUT_ENGINE: INTERFACE READY' }
     ],
     m02: [
-      { type: 'cmd', text: 'spin_up M_02 // semantic_core' },
+      { type: 'cmd', text: ' M_02 // semantic_core' },
       { type: 'response', text: '⚡ Connecting to local pgvector container...' },
       { type: 'response', text: '↳ Ingesting unstructured payload stream...' },
       { type: 'cmd', text: 'load_framework --package=langchain' },
       { type: 'status', text: '⏳ [VECTOR_PIPELINE]: SCHEDULING' },
       { type: 'response', text: '↳ Initializing semantic prompt safety layer...' },
-      { type: 'doc', text: '◇ System awaiting confirmation chunk...' } // fixed 'default' type leak risk
+      { type: 'doc', text: '◇ System awaiting confirmation chunk...' }
     ],
     m03: [
       { type: 'cmd', text: 'listen M_03 // ws_sync_gateway' },
@@ -42,8 +42,11 @@ export default function Terminal({ targetModuleId }) {
     ]
   };
 
-  // 2. Fallback to 'default' if targetModuleId is null
-  const currentLogs = diagnosticLogs[targetModuleId] || diagnosticLogs.default;
+  // Extract the base ID (e.g., converts 'm01_s1' -> 'm01') before dictionary lookup
+  const baseModuleId = targetModuleId ? targetModuleId.split('_')[0] : 'default';
+
+  // Fallback cleanly to 'default' if the base key doesn't exist in our log object
+  const currentLogs = diagnosticLogs[baseModuleId] || diagnosticLogs.default;
 
   return (
     <section className="w-full font-mono select-none px-4 py-6 max-w-4xl mx-auto">
@@ -90,11 +93,18 @@ export default function Terminal({ targetModuleId }) {
         <div className="p-6 min-h-[250px] max-h-[380px] overflow-y-auto space-y-2.5">
           <AnimatePresence mode="wait">
             <Motion.div 
-              // 3. Keep the key tied to what's actively being drawn so lines recalculate correctly
-              key={targetModuleId || 'default'} 
+              key={baseModuleId} 
               initial="hidden" 
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }} // Ensures scroll trigger only hits once
+              exit="hidden"
+              viewport={{ once: true, margin: "-100px"}}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { 
+                  opacity: 1, 
+                  transition: { staggerChildren: 0.60 } //Higher number will slow down pace
+                }
+              }}
               className="space-y-2"
             >
               {currentLogs.map((line, i) => {
@@ -109,7 +119,7 @@ export default function Terminal({ targetModuleId }) {
                       hidden: { opacity: 0, x: -4 },
                       visible: { opacity: 1, x: 0 }
                     }}
-                    transition={{ delay: i * 0.30, duration: 2.5, ease: "easeOut" }} // Sped up marginally for snappy UX
+                    transition={{ duration: 0.55, ease: "easeOut" }}
                     className={`text-sm leading-relaxed tracking-wide ${
                       isCommand 
                         ? 'text-white font-semibold' 

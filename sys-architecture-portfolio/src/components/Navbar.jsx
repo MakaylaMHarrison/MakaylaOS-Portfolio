@@ -15,7 +15,9 @@ Simple top navigation
 //import the system icon
  import CpuChip  from "./CpuChip";
  import React from 'react';
-
+ import Hero from  './Hero';
+ import DeployedModule from './DeployedModule';
+ import Contact from './Contact';
 
 
 /*
@@ -47,18 +49,27 @@ export default function Navbar(){
     -tracking-wider -> increased letter spaceing */}
 
                 {/* LEFT SIDE ICON */}
-                <div className="flex items-center space-x-2">
-                    <CpuChip    />
+                {/* LEFT SIDE BRAND LINK */}
+                <a 
+                    href="#hero" 
+                    className="flex items-center space-x-2 group cursor-pointer select-none"
+                >
+                    
+                    {/* Micro-interaction: Scale the chip subtly when hovering anywhere on the logo section */}
+                    <div className="group-hover:scale-105 transition-transform duration-200">
+                        <CpuChip />
+                    </div>
 
-                    <h1 className="text-white font-bold tracking-tighter text-xl font-mono">
+                    {/* Micro-interaction: Change text color to matches your theme on hover */}
+                    <h1 className="text-white font-bold tracking-tighter text-xl font-mono group-hover:text-cyan-400 transition-colors duration-200">
                         MAKAYLA_OS 
-                    </h1>
+                     </h1>
 
-                    {/* VERSION BADGE:  */}
+                    {/* VERSION BADGE */}
                     <span className="bg-cyan-950/50 border border-cyan-500/30 text-cyan-500 text-[10px] px-2 py-0.5 rounded tracking-widest font-mono">
-                        v1.0.0
+                     v1.0.0
                     </span> 
-                </div>
+                </a>
 
                 {/* RIGHT SIDE */}
                 <div className="flex items-center space-x-8 text-sm font-mono">
@@ -86,8 +97,10 @@ export default function Navbar(){
     -Transition -> smooth color transition*/}
 
                 
-                    <a href= "#" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Github</a>
-                    <a href= "#" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Contact</a>
+                    <a href= "#hero" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">About</a>
+                    <a href= "#projects" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Projects</a>
+                    <a href= "#contact" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Contact</a>
+                    
                 </div>
 
 

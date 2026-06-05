@@ -59,10 +59,10 @@ export default function FlowLinesSVG({ currentActiveId }) {
         let packetColor = "#22d3ee";     
 
         if (isUserFiltering && !isActive) {
-          packetRadius = 1.8;            
+          packetRadius = 3.0;            
           packetDuration = 6.0;          
-          packetOpacity = 0.25;          
-          packetColor = "#475569";       
+          packetOpacity = 1.65;          
+          packetColor = "#0e7490";       
         }
 
         const isDbReverse = currentActiveId === 'db' && key === 'serverDb';
