@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ModuleFlowLinesSVG from './ModuleFlowLinesSVG';
+import ModuleFlowLinesSVG from './ModuleFlowLinesSvg';
 import Terminal from './Terminal';
 import { motion as Motion } from "framer-motion";
 
