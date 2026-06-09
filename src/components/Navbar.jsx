@@ -13,46 +13,49 @@ Simple top navigation
 */
 
 //import the system icon
- import CpuChip  from "./CpuChip";
- import React from 'react';
- import Hero from  './Hero';
- import DeployedModule from './DeployedModule';
- import Contact from './Contact';
-
+import CpuChip from "./CpuChip";
+import React from 'react';
+import Hero from './Hero';
+import DeployedModule from './DeployedModule';
+import Contact from './Contact';
 
 /*
 -------------------------------------------
 Naviagation Section
 --------------------------------------------
-<nav> is a semanticc HTML element for navigation
+<nav> is a semantic HTML element for navigation
 Tailwind Classes:
     -max-w-6xl -> limits width
     -mx-auto -> centers horizontally
-    -px-6 py-6 -> padding
+    -px-4 md:px-6 -> responsive mobile padding adaptive safety zone
+    -py-3 md:py-2 -> tight vertical layout control
     -flex -> enables flexbox
-    -justify-between -> space between logos and links
-    -items-center -> vertically center center items
+    -flex-col md:flex-row -> stacks into grid on mobile, rows out on desktop
+    -md:justify-between -> space layout handling
+    -items-center -> vertically center items
 */
 
-//Export a default React functional compenent name Navbar
+//Export a default React functional component name Navbar
 export default function Navbar(){
      return(
-        <nav className="border-b border-cyan-400/60 bg-slate-900/69 backdrop-blur-lg sticky top-0 z-50 ">
-            <div className= "max-w-6xl mx-auto px-6 py-2 flex justify-between items-center">
+        <nav className="border-b border-cyan-400/60 bg-slate-900/80 backdrop-blur-lg sticky top-0 z-50">
+            {/* CHANGED: Swapped px-6 to px-4 md:px-6. Added flex-col on mobile, snapping to row on desktop with gap-4 */}
+            <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-2 flex flex-col md:flex-row gap-4 md:justify-between md:items-center">
 
 {/*----------------------------------------------------------------------------
                         Logo Section
 --------------------------------------------------------------------------------
-    -h1 usesd as a logo/title
+    -h1 used as a logo/title
     -text-cyan-400 -> cyan color
     -font-bold -> bold text
-    -tracking-wider -> increased letter spaceing */}
+    -tracking-wider -> increased letter spacing */}
 
                 {/* LEFT SIDE ICON */}
                 {/* LEFT SIDE BRAND LINK */}
+                {/* CHANGED: Added justify-center to keep logo aligned on stacked viewports */}
                 <a 
                     href="#hero" 
-                    className="flex items-center space-x-2 group cursor-pointer select-none"
+                    className="flex items-center justify-center space-x-2 group cursor-pointer select-none"
                 >
                     
                     {/* Micro-interaction: Scale the chip subtly when hovering anywhere on the logo section */}
@@ -60,7 +63,7 @@ export default function Navbar(){
                         <CpuChip />
                     </div>
 
-                    {/* Micro-interaction: Change text color to matches your theme on hover */}
+                    {/* Micro-interaction: Change text color to match your theme on hover */}
                     <h1 className="text-white font-bold tracking-tighter text-xl font-mono group-hover:text-cyan-400 transition-colors duration-200">
                         MAKAYLA_OS 
                      </h1>
@@ -72,42 +75,40 @@ export default function Navbar(){
                 </a>
 
                 {/* RIGHT SIDE */}
-                <div className="flex items-center space-x-8 text-sm font-mono">
+                {/* CHANGED: Changed to flex-wrap and justify-center with layout gaps instead of heavy hardcoded margins */}
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:space-x-8 md:gap-y-0 text-sm font-mono">
 
                     {/*GREEN STATUS DOT */}
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 mr-2 md:mr-0">
                         <span className="relative flex h-2 w-2">
-                            <span className="absolute inline-flex h-full w-full 
-                            rounded-full bg-green-400 opacity-75"></span>
-                            </span>
-                            <span className="text-white-400 uppercase tracking-tight"> 
-                                Systems Online
-                            </span>
-                    </div>               
+                            <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+                        </span>
+                        <span className="text-white uppercase tracking-tight text-xs sm:text-sm whitespace-nowrap"> 
+                            Systems Online
+                        </span>
+                    </div>              
             
 {/*-------------------------------------------------------------------------------------
                         Links Section
 ---------------------------------------------------------------------------------------- 
 -Container for navigation link:
-    -space-x-6 -> horizontal spacing between links
-    -text-gray-300 -> default text color
+    -gap-x-4 -> mobile horizontal layout safety margin
+    -md:space-x-8 -> desktop horizontal margin separation
 -Anchor Link:
-    -Current placeholder "#"
     -Hover:text-cyan-400 -> changes color on hover
     -Transition -> smooth color transition*/}
 
                 
-                    <a href= "#hero" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">About</a>
-                    <a href= "#projects" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Projects</a>
-                    <a href= "#contact" className="hover:text-grey-300 hover:text-cyan-400 transition-colors uppercase">Contact</a>
+                    <a href="#hero" className="text-slate-300 hover:text-cyan-400 transition-colors uppercase tracking-wider">About</a>
+                    <a href="#projects" className="text-slate-300 hover:text-cyan-400 transition-colors uppercase tracking-wider">Projects</a>
+                    <a href="#contact" className="text-slate-300 hover:text-cyan-400 transition-colors uppercase tracking-wider">Contact</a>
                     
                 </div>
 
-
             </div>
         
- 
-        </nav>
+         </nav>
         
     )
 }
