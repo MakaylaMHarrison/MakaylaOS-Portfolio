@@ -97,3 +97,26 @@ TODO:
 -BIO
 -HOME BOTTON MAKAYLAOS
 -----------------
+
+
+
+
+
+=============================================================================
+ENTRY LOG: 2026.10.06
+RESPONSIVE MOBILE : ARCHITECTURE.JSX
+==============================================================================
+DESCRIPTION:
+1. FIX THE LAYOUT OF THE DIAGRAM
+2. NEED TO KNOW HOW THE SVG LINES WILL FLOW
+
+
+========================================================================
+ENTRY LOG: 2026.13.06
+RESPONSIVE LAYOUT : IPHONE 12 MINI
+==========================================================================
+DESCRIPTION:
+### IPHONE 12 MINI DEMENSIONS 
+- SIZE WIDTH: 375px
+- SIZE HEIGHT: 812px
+==============================================================================

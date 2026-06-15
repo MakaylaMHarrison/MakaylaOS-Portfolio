@@ -10,11 +10,12 @@ import { motion as Motion } from "framer-motion";
 
 export default function FlowLinesSVG({ currentActiveId }) {
   
+  // MODIFICATION: Extended coordinates from 950 to 1000 to drop the layout line down further
   const paths = {
     clientServer: "M 200,390 Q 320,390 500,110",
     serverDb: "M 500,110 Q 680,390 800,390",
     serverOutput: "M 500,110 L 500,690",
-    outputTerminal: "M 500,690 L 500,950"
+    outputTerminal: "M 500,690 L 500,1070" 
   }; 
 
   const isPathActive = (connection) => {
@@ -58,10 +59,10 @@ export default function FlowLinesSVG({ currentActiveId }) {
         let packetColor = "#22d3ee";     
 
         if (isUserFiltering && !isActive) {
-          packetRadius = 1.8;            
+          packetRadius = 3.0;            
           packetDuration = 6.0;          
-          packetOpacity = 0.25;          
-          packetColor = "#475569";       
+          packetOpacity = 1.65;          
+          packetColor = "#0e7490";       
         }
 
         const isDbReverse = currentActiveId === 'db' && key === 'serverDb';
