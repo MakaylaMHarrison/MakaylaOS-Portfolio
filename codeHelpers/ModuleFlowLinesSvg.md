@@ -34,6 +34,7 @@ export default function ModuleFlowLinesSVG({ currentActiveId }) {
     >
       {Object.entries(paths).map(([key, pathD]) => {
         const isActive = isPathActive(key);
+        const isUserFiltering = currentActiveId !== null;
         const theme = getPathColors(key);
 
         const strokeColor = isActive ? theme.active : theme.dim;
@@ -42,8 +43,11 @@ export default function ModuleFlowLinesSVG({ currentActiveId }) {
 
         let packetRadius = 5;          
         let packetDuration = 1.6;        
-        const packetOpacity = isActive ? 1.0 : 0.20;
+        let packetOpacity = isActive ? 1.0 : 0.0;         
 
+        if (isUserFiltering && !isActive) {
+          packetOpacity = 0.0; 
+        }
 
         return (
           <g key={key}>
@@ -64,6 +68,7 @@ export default function ModuleFlowLinesSVG({ currentActiveId }) {
             />
 
             {/* LIGHTNING DATA PACKET A */}
+            {packetOpacity > 0 && (
               <Motion.circle
                 fill={theme.active}
                 style={{ offsetPath: `path('${pathD}')`, motionPath: `path('${pathD}')`, transition: "none" }}
@@ -71,14 +76,16 @@ export default function ModuleFlowLinesSVG({ currentActiveId }) {
                   offsetDistance: ["0%", "100%"],
                   r: packetRadius,
                   opacity: packetOpacity,
-                  filter: isActive ? `drop-shadow(0 0 6px ${theme.active})` : "none"
+                  filter: `drop-shadow(0 0 6px ${theme.active})`
                 }}
                 transition={{
                   offsetDistance: { repeat: Infinity, duration: packetDuration, ease: "linear" }
                 }}
               />
+            )}
 
             {/* LIGHTNING DATA PACKET B */}
+            {packetOpacity > 0 && (
               <Motion.circle
                 fill={theme.active}
                 style={{ offsetPath: `path('${pathD}')`, motionPath: `path('${pathD}')`, transition: "none" }}
@@ -86,7 +93,7 @@ export default function ModuleFlowLinesSVG({ currentActiveId }) {
                   offsetDistance: ["0%", "100%"],
                   r: packetRadius,
                   opacity: packetOpacity,
-                  filter: isActive ? `drop-shadow(0 0 6px ${theme.active})` : "none"
+                  filter: `drop-shadow(0 0 6px ${theme.active})`
                 }}
                 transition={{
                   offsetDistance: { 
@@ -97,6 +104,7 @@ export default function ModuleFlowLinesSVG({ currentActiveId }) {
                   }
                 }}
               />
+            )}
           </g>
         );
       })}

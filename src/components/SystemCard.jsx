@@ -38,7 +38,7 @@ export default function SystemCard({ title, id, currentActiveId, activePathTrigg
 
   return (
     <Motion.div
-      className={`relative w-full max-w-sm md:w-56 min-h-[14rem] md:h-56 rounded-lg select-none backdrop-blur-3xl transition-all duration-300 font-mono bg-slate-950/40
+      className={`relative w-full max-w-sm md:w-full min-h-[14rem] md:h-56 rounded-lg select-none backdrop-blur-3xl transition-all duration-300 font-mono bg-slate-950/40
         ${isDimmed ? 'opacity-30 filter grayscale-[30%]' : 'opacity-100'}
       `}
       initial={{ opacity: 0, scale: 0.98 }}
@@ -56,20 +56,20 @@ export default function SystemCard({ title, id, currentActiveId, activePathTrigg
       >
         {/* HEADER BLOCK: Formatted using a strict 3-column structural layout grid */}
         <div className="w-full flex flex-col items-center justify-center pt-0.5">
-          <div className="grid grid-cols-[20px_1fr_20px] items-center w-full mb-1">
+          <div className="grid grid-cols-[16px_1fr_16px] items-center w-full mb-1">
             
             {/* 1. Left Column: Icon Slot */}
             <div className="flex items-center justify-start">
               {Icon && (
-                <span className="w-4 h-4 text-cyan-400 flex-shrink-0 flex items-center justify-center">
+                <span className="w-3.5 h-3.5 text-cyan-400 flex-shrink-0 flex items-center justify-center">
                   <Icon />
                 </span>
               )}
             </div>
 
             {/* 2. Center Column: Component Title */}
-            <div className="flex items-center justify-center text-center px-1">
-              <h3 className="uppercase text-sm md:text-base tracking-[0.08em] font-bold text-white whitespace-normal break-words leading-tight">
+            <div className="flex items-center justify-center text-center px-1 overflow-hidden">
+              <h3 className="uppercase text-xs lg:text-sm tracking-[0.05em] font-bold text-white whitespace-nowrap leading-tight">
                 {title}
               </h3>
             </div>
@@ -77,7 +77,7 @@ export default function SystemCard({ title, id, currentActiveId, activePathTrigg
             {/* 3. Right Column: Pulsing Status Beacon */}
             <div className="flex items-center justify-end">
               <Motion.div
-                className={`w-2.5 h-2.5 rounded-full flex-shrink-0 z-10 transition-colors duration-300
+                className={`w-2 h-2 rounded-full flex-shrink-0 z-10 transition-colors duration-300
                   ${isActive ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-cyan-400 shadow-[0_0_4px_rgba(34,211,238,0.5)]'}`}
                 animate={{ scale: isActive ? [1, 1.3, 1] : [1, 1.15, 1] }}
                 transition={{ repeat: Infinity, duration: 2.0, ease: "easeInOut" }}
@@ -98,7 +98,7 @@ export default function SystemCard({ title, id, currentActiveId, activePathTrigg
         </div>
 
         {/* CONTENT BLOCK: Data Payload Viewports */}
-        <div className="w-full flex-grow flex flex-col justify-center items-center font-mono text-sm md:text-base text-white tracking-wide space-y-2 pt-3">
+        <div className="w-full flex-grow flex flex-col justify-center items-center font-mono text-xs lg:text-sm text-white tracking-wide space-y-2 pt-3">
           {children}
         </div> 
       </div>

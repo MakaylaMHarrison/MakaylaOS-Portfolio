@@ -42,111 +42,89 @@ export default function Terminal({ targetModuleId }) {
     ]
   };
 
-  // Extract the base ID (e.g., converts 'm01_s1' -> 'm01') before dictionary lookup
   const baseModuleId = targetModuleId ? targetModuleId.split('_')[0] : 'default';
-
-  // Fallback cleanly to 'default' if the base key doesn't exist in our log object
   const currentLogs = diagnosticLogs[baseModuleId] || diagnosticLogs.default;
 
   return (
-    <section className="w-full font-mono select-none px-4 py-6 max-w-4xl mx-auto">
-      {/* Meta Headers */}
-      <div className="flex items-center justify-between px-1 mb-3">
+    /* 1. NO MORE WRAPPERS: This single block controls the component background, outline, and layout.
+      2. TARGETED RESPONSIVE SIZING: 
+         - Mobile: Narrower width ('w-[84%] max-w-sm') so it shrinks in comparison to module cards.
+         - Desktop: Instantly restores perfectly back to full-width format ('md:w-full md:max-w-4xl').
+    */
+    <div className="w-[84%] max-w-sm md:w-full md:max-w-4xl mx-auto font-mono select-none mt-0 mb-6 md:my-6 md:transform md:translate-y-16 bg-black/95 border border-slate-900 rounded-lg overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.22)] transition-all duration-500">
+      
+      {/* Top Header Controls bar */}
+      <div className="bg-[#111827] border-b border-slate-900/60 px-5 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-500/80 shadow-[0_0_8px_rgba(6,182,212,0.6)]" />
-          <span className="text-xs uppercase tracking-[0.2em] font-bold text-cyan-500">
-            SYSTEM_DIAGNOSTICS
-          </span>
+          <span className="w-3 h-3 rounded-full bg-[#ef4444]/60" />
+          <span className="w-3 h-3 rounded-full bg-[#eab308]/60" />
+          <span className="w-3 h-3 rounded-full bg-[#22c55e]/60" />
         </div>
-
-        <Motion.div 
-          className="flex items-center space-x-2 px-1 py-0.5"
-          animate={{ opacity: [0.25, 1, 0.25] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-cyan-500/60 shadow-[0_0_6px_rgba(6,182,212,0.4)]" />
-          <span className="text-xs uppercase tracking-[0.15em] font-bold text-cyan-500/60">
-            CONNECTED
-          </span>
-        </Motion.div>
-      </div>
-
-      {/* Terminal Window Box Container */}
-      <div className="w-full bg-black/95 border border-slate-900 rounded-lg overflow-hidden shadow-[0_0_40px_rgba(6,182,212,0.22)] transition-all duration-500">
-        
-        {/* Top Header Controls bar */}
-        <div className="bg-[#111827] border-b border-slate-900/60 px-5 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="w-3 h-3 rounded-full bg-[#ef4444]/60" />
-            <span className="w-3 h-3 rounded-full bg-[#eab308]/60" />
-            <span className="w-3 h-3 rounded-full bg-[#22c55e]/60" />
-          </div>
-          <div className="text-xs font-bold text-slate-500 tracking-widest uppercase">
-            CONSOLE_OUTPUT
-          </div>
-          <div className="text-xs text-slate-600 font-bold tracking-wider">
-            21:52:51
-          </div>
+        <div className="text-xs font-bold text-slate-500 tracking-widest uppercase">
+          CONSOLE_OUTPUT
         </div>
-
-        {/* Console Text Canvas Area */}
-        <div className="p-6 min-h-[250px] max-h-[380px] overflow-y-auto space-y-2.5">
-          <AnimatePresence mode="wait">
-            <Motion.div 
-              key={baseModuleId} 
-              initial="hidden" 
-              whileInView="visible"
-              exit="hidden"
-              viewport={{ once: true, margin: "-100px"}}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { 
-                  opacity: 1, 
-                  transition: { staggerChildren: 0.60 } //Higher number will slow down pace
-                }
-              }}
-              className="space-y-2"
-            >
-              {currentLogs.map((line, i) => {
-                const isCommand = line.type === 'cmd';
-                const isStatus = line.type === 'status';
-                const isSuccess = line.type === 'success';
-
-                return (
-                  <Motion.p
-                    key={i}
-                    variants={{
-                      hidden: { opacity: 0, x: -4 },
-                      visible: { opacity: 1, x: 0 }
-                    }}
-                    transition={{ duration: 0.55, ease: "easeOut" }}
-                    className={`text-sm leading-relaxed tracking-wide ${
-                      isCommand 
-                        ? 'text-white font-semibold' 
-                        : isStatus 
-                        ? 'text-amber-400/90' 
-                        : isSuccess 
-                        ? 'text-emerald-400/90' 
-                        : 'text-slate-400/90'
-                    }`}
-                  >
-                    {isCommand && <span className="text-cyan-500 mr-2.5 font-bold">➔</span>}
-                    {!isCommand && <span className="inline-block w-5" />}
-                    {line.text}
-                  </Motion.p>
-                );
-              })}
-
-              {/* Cursor */}
-              <Motion.span
-                className="inline-block w-2 h-4 bg-cyan-500/90 shadow-[0_0_6px_rgba(6,182,212,0.8)] ml-5 mt-0.5"
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ repeat: Infinity, duration: 0.9, ease: "easeInOut" }}
-              />
-            </Motion.div>
-          </AnimatePresence>
+        <div className="text-xs text-slate-600 font-bold tracking-wider">
+          21:52:51
         </div>
       </div>
-    </section>
+
+      {/* Console Text Canvas Area with Custom Scrollbar Settings */}
+      <div className="p-6 h-60 overflow-y-auto md:min-h-[250px] md:max-h-[380px] md:h-auto space-y-2.5 custom-scrollbar">
+        <AnimatePresence mode="wait">
+          <Motion.div 
+            key={baseModuleId} 
+            initial="hidden" 
+            whileInView="visible"
+            exit="hidden"
+            viewport={{ once: true, margin: "-100px"}}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: { 
+                opacity: 1, 
+                transition: { staggerChildren: 0.60 } 
+              }
+            }}
+            className="space-y-2"
+          >
+            {currentLogs.map((line, i) => {
+              const isCommand = line.type === 'cmd';
+              const isStatus = line.type === 'status';
+              const isSuccess = line.type === 'success';
+
+              return (
+                <Motion.p
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, x: -4 },
+                    visible: { opacity: 1, x: 0 }
+                  }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
+                  className={`text-sm leading-relaxed tracking-wide ${
+                    isCommand 
+                      ? 'text-white font-semibold' 
+                      : isStatus 
+                      ? 'text-amber-400/90' 
+                      : isSuccess 
+                      ? 'text-emerald-400/90' 
+                      : 'text-slate-400/90'
+                  }`}
+                >
+                  {isCommand && <span className="text-cyan-500 mr-2.5 font-bold">➔</span>}
+                  {!isCommand && <span className="inline-block w-5" />}
+                  {line.text}
+                </Motion.p>
+              );
+            })}
+
+            {/* Cursor */}
+            <Motion.span
+              className="inline-block w-2 h-4 bg-cyan-500/90 shadow-[0_0_6px_rgba(6,182,212,0.8)] ml-5 mt-0.5"
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ repeat: Infinity, duration: 0.9, ease: "easeInOut" }}
+            />
+          </Motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
   );
 }

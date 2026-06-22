@@ -48,8 +48,8 @@
   }
 
   /* CRITICAL VECTOR GRAPHICS REWRITE:
-    Explicit coordinate loop range preventing infinite stretching artifacts 
-    inside preserveAspectRatio container dimensions.
+     Explicit coordinate loop range preventing infinite stretching artifacts 
+     inside preserveAspectRatio container dimensions.
   */
   @keyframes dash {
     from {
@@ -98,9 +98,29 @@ body {
 }
 
 /* BROWSERS VECTOR HARMONIZATION HOOKS:
-  Forces individual graphics engines to track absolute tangent rotation matrix arcs 
-  automatically when translating along custom SVG `<path>` vectors.
+   Forces individual graphics engines to track absolute tangent rotation matrix arcs 
+   automatically when translating along custom SVG `<path>` vectors.
 */
 circle {
   offset-rotate: auto;
+}
+
+/* 4. Custom Subtle Scrollbar Styling for Terminal Engine
+   Keeps the scroll track ultra-thin and blended with the terminal interface.
+*/
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }

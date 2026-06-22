@@ -202,7 +202,7 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
             BUILDING RESILIENT SYSTEMS WITH PRECISION AND CLARITY.
           </p>
           <p className="text-xs sm:text-lg md:text-xl text-slate-400 font-bold tracking-[0.15em] sm:tracking-[0.2em]">
-            VISUALIZE THE ARCHITECTURE BELOW
+            VISUALIZE MY TECHNICAL SKILLSET BELOW
           </p>
         </div>
 

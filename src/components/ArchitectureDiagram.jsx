@@ -53,76 +53,81 @@ export default function ArchitectureDiagram() {
                 <FlowLinesSVG currentActiveId={activeNodeId} />
 
                 {/* FOREGROUND LAYOUT LAYER */}
-                {/* Mobile maps cards and lines in a standard flex column, Desktop uses absolute placement */}
-                <div className="relative flex flex-col items-center w-full pointer-events-none z-10 md:absolute md:block md:inset-0 md:h-full">
+                <div className="relative flex flex-col items-center w-full gap-4 pointer-events-none z-10 md:absolute md:block md:inset-0 md:h-full">
 
                     {/* NODE 1: CLIENT_SIDE */}
-                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[28%] md:left-[15%] md:-translate-x-1/2">
-                        <SystemCard title="CLIENT_SIDE" id="client" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ClientIcon}>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>FW:</span>
-                                <span className="text-white">React</span>
+                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[28%] md:left-[12%] md:-translate-x-1/2 md:w-[280px]">
+                        <SystemCard title="CLIENT_SIDE SKILLS" id="client" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ClientIcon}>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>INTERFACE:</span>
+                                <span className="text-white">React / Next.js</span>
                             </div>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>STATE:</span>
-                                <span className="text-white">Query</span>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap mt-1.5">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>STYLING:</span>
+                                <span className="text-white">Tailwind CSS</span>
                             </div>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>CSS:</span>
-                                <span className="text-white">Tailwind</span>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap mt-1.5">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>ANIMATION:</span>
+                                <span className="text-white">Framer Motion</span>
                             </div>
                         </SystemCard>
                     </div>
 
                     {/* MOBILE SEGMENT: CLIENT TO SERVER */}
-                    <FlowLinesSVG currentActiveId={activeNodeId} mobileSegment="clientServer" />
+                    <div className="md:hidden w-full flex justify-center">
+                        <FlowLinesSVG currentActiveId={activeNodeId} mobileSegment="clientServer" />
+                    </div>
 
                     {/* NODE 2: SERVER_CORE */}
-                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[0%] md:left-1/2 md:-translate-x-1/2">
-                        <SystemCard title="SERVER_CORE" id="server" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ServerIcon}>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>RUNTIME:</span>
+                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[0%] md:left-1/2 md:-translate-x-1/2 md:w-[280px]">
+                        <SystemCard title="SERVER_CORE SKILLS" id="server" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={ServerIcon}>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>RUNTIME:</span>
                                 <span className="text-white">Node.js</span>
                             </div>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>ROUTER:</span>
-                                <span className="text-white">Express</span>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap mt-1.5">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>COMPILER:</span>
+                                <span className="text-white">TypeScript</span>
                             </div>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>TYPES:</span>
-                                <span className="text-white">Zod</span>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap mt-1.5">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>VALIDATION:</span>
+                                <span className="text-white">Zod Guard</span>
                             </div>
                         </SystemCard>
                     </div>
 
                     {/* MOBILE SEGMENT: SERVER TO DATABASE */}
-                    <FlowLinesSVG currentActiveId={activeNodeId} mobileSegment="serverDb" />
+                    <div className="md:hidden w-full flex justify-center">
+                        <FlowLinesSVG currentActiveId={activeNodeId} mobileSegment="serverDb" />
+                    </div>
 
                     {/* NODE 3: DATABASE */}
-                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[28%] md:left-[85%] md:-translate-x-1/2">
-                        <SystemCard title="DATABASE" id="db" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={DatabaseIcon}>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>TYPES:</span>
-                                <span className="text-white">Postgres</span>
+                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[28%] md:left-[88%] md:-translate-x-1/2 md:w-[280px]">
+                        <SystemCard title="DATABASE SKILLS" id="db" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={DatabaseIcon}>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>DATA_MODEL:</span>
+                                <span className="text-white">Relational JSON</span>
                             </div>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>ORM:</span>
-                                <span className="text-white">Drizzle</span>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap mt-1.5">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>SCHEMAS:</span>
+                                <span className="text-white">Typed Objects</span>
                             </div>
-                            <div className="w-full flex justify-between text-sm md:text-base px-2">
-                                <span className={`${getLabelColor()} font-bold`}>SCHEMA:</span>
-                                <span className="text-white">Relational</span>
+                            <div className="w-full flex justify-between text-xs lg:text-sm px-1 whitespace-nowrap mt-1.5">
+                                <span className={`${getLabelColor()} font-bold mr-2`}>STORAGE:</span>
+                                <span className="text-white">Browser / Local</span>
                             </div>
                         </SystemCard>
                     </div>
 
                     {/* MOBILE SEGMENT: SERVER TO OUTPUT */}
-                    <FlowLinesSVG currentActiveId={activeNodeId} mobileSegment="serverOutput" />
+                    <div className="md:hidden w-full flex justify-center">
+                        <FlowLinesSVG currentActiveId={activeNodeId} mobileSegment="serverOutput" />
+                    </div>
 
                     {/* NODE 4: OUTPUT_STREAM */}
-                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[58%] md:left-1/2 md:-translate-x-1/2">
+                    <div className="relative w-full max-w-sm flex justify-center pointer-events-auto md:absolute md:top-[58%] md:left-1/2 md:-translate-x-1/2 md:w-[280px]">
                         <SystemCard title="OUTPUT_STREAM" id="output" currentActiveId={activeNodeId} activePathTrigger={setActiveNodeId} icon={StreamIcon}>
-                            <div className="text-cyan-400 font-bold tracking-wide text-lg md:text-xl pt-1 text-center w-full">
+                            <div className="text-cyan-400 font-bold tracking-wide text-base lg:text-lg pt-0.5 text-center w-full whitespace-nowrap">
                                 Deployed_Modules
                             </div>
                         </SystemCard>
