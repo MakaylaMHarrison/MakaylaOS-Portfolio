@@ -20,5 +20,6 @@ ENTRY: DESKTOP AND MOBILE BREAKPOINTS
 FILE: ALL
 ========================================================================
                 DEV LOG
+VIEWPORT LAYOUT:
 • DESKTOP BREAKS VIEWPORT AT WIDTH 768px
-•MOBILE VIEWPORT STARTS HERE THROUGH VIEWING ON DESKTOP AND SCALING DOWN
+====================================================================

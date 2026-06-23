@@ -10,10 +10,13 @@ This is the file for your profile bio user system panel
 Imports 
 =========================================
 */
+import { useState } from "react";
 import avatar from "../assets/avatar.png";
-import { motion as Motion } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 
 export default function Hero({ name = "Makayla Harrison", role = "Junior Developer" }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const hotHighlight = "linear-gradient(to right, transparent, #22d3ee 20%, #ffffff 50%, #22d3ee 80%, transparent)";
   const hotHighlightVertical = "linear-gradient(to bottom, transparent, #22d3ee 20%, #ffffff 50%, #22d3ee 80%, transparent)";
 
@@ -60,7 +63,7 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
         <div className="absolute top-0 right-[-1px] h-full w-[2px] z-30 shadow-[0_0_15px_rgba(34,211,238,0.8)]" style={{ background: hotHighlightVertical }} />
 
         {/* GLASS PANEL BODY */}
-        <div className="relative flex flex-col bg-[#020617]/95 backdrop-blur-3xl overflow-hidden border border-white/10 p-4 sm:p-6">
+        <div className="relative flex flex-col bg-[#020617]/95 backdrop-blur-3xl border border-white/10 p-4 sm:p-6">
           <div className="absolute inset-0 opacity-10 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
           {/* TOP SECTION: STACKS ON MOBILE, SPLITS ON DESKTOP */}
@@ -147,12 +150,6 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
                         </Motion.span>
                       ))}
                     </div>
-
-                    <Motion.div
-                      animate={{ opacity: [1, 0, 1] }}
-                      transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-                      className="ml-1 w-0 h-0 border-l-[3px] sm:border-l-[4px] border-l-transparent border-r-[3px] sm:border-r-[4px] border-r-transparent border-t-[5px] sm:border-t-[7px] border-t-green-500 translate-y-[1px] shrink-0"
-                    />
                   </div>
                 </div>
                 <div className="h-[2px] mt-2 opacity-30" style={{ background: hotHighlight }} />
@@ -161,7 +158,7 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
             </div>
           </div>
 
-          {/* LOWER SECTION: UNIFIED ABOUT ME BLOCK */}
+          {/* LOWER SECTION: UNIFIED ABOUT ME BLOCK WITH EXPANSION */}
           <Motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -176,11 +173,48 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
                 <div className="h-[2px] mt-1.5 opacity-50 w-full" style={{ background: hotHighlight }} />
               </div>
 
-              <p className="text-slate-300 text-xs sm:text-md font-mono leading-relaxed tracking-wide font-light text-left w-full pt-1">
-                I view system architecture as a mirror to human architecture built on foundations of 
-                purpose, integrity, and growth. As a full-stack developer, I translate complex challenges 
-                into resilient digital infrastructures built to adapt, endure, and empower.
-              </p>
+              <div className="text-slate-300 text-xs sm:text-md font-mono leading-relaxed tracking-wide font-light text-left w-full pt-1">
+                <p className="inline">
+                  Hello, welcome! I'm MaKayla, a full-stack junior software developer based in Indianapolis, IN.{" "}
+                </p>
+                
+                {!isExpanded && (
+                  <button
+                    onClick={() => setIsExpanded(true)}
+                    className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 font-bold tracking-wider uppercase cursor-pointer transition-colors duration-200 ml-1"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                    Read More...
+                  </button>
+                )}
+                
+                <AnimatePresence>
+                  {isExpanded && (
+                    <Motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-3">
+                        As a recent graduate, I approach building systems with a unique perspective: I view system 
+                        architecture as a mirror to human architecture built on foundations of 
+                        purpose, integrity, and growth. I love translating complex challenges 
+                        into resilient digital infrastructures built to adapt, endure, and empower.
+                      </p>
+                      
+                      <button
+                        onClick={() => setIsExpanded(false)}
+                        className="mt-3 flex items-center gap-1.5 text-slate-400 hover:text-slate-300 font-bold tracking-wider uppercase cursor-pointer transition-colors duration-200"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-500" />
+                        Show Less...
+                      </button>
+                    </Motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </Motion.div>
 
