@@ -38,7 +38,7 @@ Tailwind Classes:
 //Export a default React functional component name Navbar
 export default function Navbar(){
      return(
-        <nav className="border-b border-cyan-400/60 bg-slate-900/80 backdrop-blur-lg sticky top-0 z-50">
+        <nav className=" fixed top-0 left-0 w-full border-b border-cyan-400/60 bg-slate-900/80 backdrop-blur-lg z-50">
             {/* CHANGED: Swapped px-6 to px-4 md:px-6. Added flex-col on mobile, snapping to row on desktop with gap-4 */}
             <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 md:py-2 flex flex-col md:flex-row gap-4 md:justify-between md:items-center">
 

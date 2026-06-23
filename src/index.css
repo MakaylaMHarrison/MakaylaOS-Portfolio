@@ -47,10 +47,7 @@
     }
   }
 
-  /* CRITICAL VECTOR GRAPHICS REWRITE:
-     Explicit coordinate loop range preventing infinite stretching artifacts 
-     inside preserveAspectRatio container dimensions.
-  */
+  /* CRITICAL VECTOR GRAPHICS REWRITE */
   @keyframes dash {
     from {
       stroke-dashoffset: 24;
@@ -90,6 +87,11 @@
 }
 
 /* 3. Global Static Style Layer overrides */
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 body {
   background: radial-gradient(circle at top, #0b1a2a, #050b14);
   min-height: 100vh;
@@ -97,30 +99,36 @@ body {
   overflow-x: hidden;
 }
 
-/* BROWSERS VECTOR HARMONIZATION HOOKS:
-   Forces individual graphics engines to track absolute tangent rotation matrix arcs 
-   automatically when translating along custom SVG `<path>` vectors.
-*/
+/* BROWSERS VECTOR HARMONIZATION HOOKS */
 circle {
   offset-rotate: auto;
 }
 
-/* 4. Custom Subtle Scrollbar Styling for Terminal Engine
-   Keeps the scroll track ultra-thin and blended with the terminal interface.
-*/
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+/* 4. Custom Utilities (Updated for Tailwind v4 Syntax) */
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #090d16;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 9999px;
+    
+    &:hover {
+      background: #334155;
+    }
+  }
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #090d16;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 9999px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

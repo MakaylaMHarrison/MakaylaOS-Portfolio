@@ -9,11 +9,11 @@ function App() {
   const [activePipeline, setActivePipeline] = useState(null);
 
   return (
-    <div className="min-h-screen text-white bg-[#030712] flex flex-col justify-between">
+    <div className="min-h-screen text-white bg-[#030712] flex flex-col justify-between ">
       <Navbar />
 
       {/* CHANGED: Swapped px-6 to px-4 md:px-6 to maximize mobile width. Added responsive vertical spacing. */}
-      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-6 pb-12 w-full flex-grow space-y-12 md:space-y-0">
+      <main className="max-w-6xl mx-auto px-4 md:px-6 pt-6 pb-12 w-full flex-grow ">
         
         {/* Wrap Hero with the #hero ID */}
         <section id="hero">
@@ -23,7 +23,7 @@ function App() {
         <ArchitectureDiagram />
 
         {/* Set a tight margin header directly above modules with #projects ID */}
-        <section id="projects" className="scroll-mt-20 relative mt-4 space-y-12">
+        <section id="projects" className="scroll-mt-20 relative mt-8 md:mt-4">
           <DeployedModule 
             activePipeline={activePipeline} 
             setActivePipeline={setActivePipeline} 
