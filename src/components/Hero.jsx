@@ -18,7 +18,8 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
   const hotHighlightVertical = "linear-gradient(to bottom, transparent, #22d3ee 20%, #ffffff 50%, #22d3ee 80%, transparent)";
 
   return (
-    <section className="w-full max-w-5xl mx-auto px-2 md:px-4 pb-0 pt-0 font-mono select-none space-y-12">
+    /* ADJUSTED: Increased mobile top padding (pt-44) to guarantee clearance of the wrapped mobile navbar */
+    <section className="w-full max-w-6xl mx-auto px-2 md:px-4 pb-0 pt-24 md:pt-28 font-mono select-none space-y-12">
       
       {/* 1. STANDALONE TOP TEXT (Main Title) */}
       <Motion.div
@@ -27,15 +28,16 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
         transition={{ duration: 0.8 }}
         className="text-center space-y-5 pt-2"
       >
-        {/* Main Header Layout: Dynamic responsive scaling */}
-        <div className="w-full text-center overflow-hidden px-2 md:px-8">
-          <h1 className="text-3xl sm:text-4xl md:text-[5.5vw] font-black tracking-[0.15em] sm:tracking-[0.35em] text-white uppercase leading-tight md:leading-none select-none">
+        {/* ADJUSTED: Removed 'overflow-hidden' so text doesn't get clipped, 
+           and set font sizing to start at text-2xl for ultra-small viewports */}
+        <div className="w-full text-center px-2 md:px-8">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-[0.1em] sm:tracking-[0.35em] text-white uppercase leading-tight md:leading-none select-none">
             SOFTWARE <span className="text-cyan-400">DEVELOPER</span>
           </h1>
         </div>
 
         {/* Systems operator subtitle phrase */}
-        <p className="text-xs sm:text-base md:text-lg tracking-[0.06em] sm:tracking-[0.12em] text-slate-400 uppercase max-w-4xl mx-auto leading-relaxed px-2">
+        <p className="text-[10px] xs:text-xs sm:text-base md:text-lg tracking-[0.06em] sm:tracking-[0.12em] text-slate-400 uppercase max-w-4xl mx-auto leading-relaxed px-2">
           Systems thinking is how you <span className="text-white font-bold tracking-normal sm:tracking-[0.18em]">SEE</span>
           <span className="text-cyan-500 mx-1 sm:mx-3">•</span>
           Systems creation is how you <span className="text-cyan-400 font-bold tracking-normal sm:tracking-[0.18em]">ACT</span>
@@ -88,46 +90,45 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
             </div>
 
             {/* INFO SECTION */}
+            {/* ADJUSTED: Dropped text sizes slightly on mobile (text-sm/text-base scaling up to sm:text-2xl) 
+               and changed labels from w-24 to w-20 on mobile to maximize room for data */}
             <div className="w-full md:w-[65%] flex flex-col justify-between md:pl-8 space-y-4 md:space-y-0 md:py-0.5">
               
               {/* User Data Row */}
               <Motion.div initial={{ opacity: 0, x: -20}} animate={{ opacity: 1, x: 0}} transition={{ duration: 0.5, delay: 0.5 }} className="relative w-full">
                 <div className="flex flex-row items-baseline">
-                  <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-24 shrink-0">User:</span>
-                  <span className="text-white text-lg sm:text-2xl font-light tracking-tight ml-2 break-words">{name}</span>
+                  <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-20 sm:w-24 shrink-0">User:</span>
+                  <span className="text-white text-base sm:text-2xl font-light tracking-tight ml-2 break-words">{name}</span>
                 </div>
-                {/* Glowing Laser Divider */}
                 <div className="h-[2px] mt-2 opacity-50" style={{ background: hotHighlight }} />
               </Motion.div>
 
               {/* Location Data Row */}
               <Motion.div initial={{ opacity: 0, x: -20}} animate={{ opacity: 1, x: 0}} transition={{ duration: 0.5, delay: 0.6 }} className="relative w-full">
                 <div className="flex flex-row items-baseline">
-                  <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-24 shrink-0">LOCATION:</span>
-                  <span className="text-white text-lg sm:text-2xl font-light tracking-tight ml-2">Indiana, US</span>
+                  <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-20 sm:w-24 shrink-0">LOC:</span>
+                  <span className="text-white text-base sm:text-2xl font-light tracking-tight ml-2">Indiana, US</span>
                 </div>
-                {/* Glowing Laser Divider */}
                 <div className="h-[2px] mt-2 opacity-50" style={{ background: hotHighlight }} />
               </Motion.div>
 
               {/* Role Data Row */}
               <Motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.7 }} className="relative w-full">
                 <div className="flex flex-row items-baseline">
-                  <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-24 shrink-0">Role:</span>
-                  <span className="text-slate-200 text-lg sm:text-2xl font-light tracking-wide ml-2">{role}</span>
+                  <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-20 sm:w-24 shrink-0">Role:</span>
+                  <span className="text-slate-200 text-sm sm:text-2xl font-light tracking-wide ml-2">{role}</span>
                 </div>
-                {/* Glowing Laser Divider */}
                 <div className="h-[2px] mt-2 opacity-40" style={{ background: hotHighlight }} />
               </Motion.div>
 
               {/* Status Row */}
               <Motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ type: "spring", delay: 0.8 }} className="relative w-full">
                 <div className="flex flex-row items-center">
-                  <span className="text-green-500 uppercase text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-24 shrink-0">Status:</span>
-                  <div className="flex items-center leading-none ml-2 flex-wrap gap-y-1">
-                    <span className="text-green-400 text-base sm:text-2xl font-mono tracking-tighter whitespace-nowrap">Building Systems</span>
+                  <span className="text-green-500 uppercase text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 w-20 sm:w-24 shrink-0">Status:</span>
+                  <div className="flex items-center leading-none ml-2 flex-nowrap">
+                    <span className="text-green-400 text-sm sm:text-2xl font-mono tracking-tighter whitespace-nowrap">Building Systems</span>
 
-                    <div className="flex ml-1">
+                    <div className="flex ml-0.5 shrink-0">
                       {[0, 1, 2].map((index) => (
                         <Motion.span
                           key={index}
@@ -140,7 +141,7 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
                             repeatDelay: 0.2,
                             ease: "easeInOut"
                           }}
-                          className="text-green-400 text-md sm:text-2xl font-mono"
+                          className="text-green-400 text-sm sm:text-2xl font-mono"
                         >
                           .
                         </Motion.span>
@@ -150,11 +151,10 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
                     <Motion.div
                       animate={{ opacity: [1, 0, 1] }}
                       transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-                      className="ml-2 w-0 h-0 border-l-[4px] border-l-transparent border-r-[4px] border-r-transparent border-t-[7px] border-t-green-500 translate-y-[1px]"
+                      className="ml-1 w-0 h-0 border-l-[3px] sm:border-l-[4px] border-l-transparent border-r-[3px] sm:border-r-[4px] border-r-transparent border-t-[5px] sm:border-t-[7px] border-t-green-500 translate-y-[1px] shrink-0"
                     />
                   </div>
                 </div>
-                {/* Glowing Laser Divider */}
                 <div className="h-[2px] mt-2 opacity-30" style={{ background: hotHighlight }} />
               </Motion.div>
 
@@ -169,16 +169,13 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
             className="w-full font-mono mt-6 px-1"
           >
             <div className="space-y-3">
-              {/* Target Header Layout Wrapper */}
               <div className="w-full sm:w-[45%] shrink-0">
                 <span className="text-cyan-400 uppercase text-xs sm:text-md tracking-[0.2em] sm:tracking-[0.3em] font-bold opacity-80 block text-left">
                   USER SYSTEM BIO:
                 </span>
-                {/* Glowing Laser Divider under bio header */}
                 <div className="h-[2px] mt-1.5 opacity-50 w-full" style={{ background: hotHighlight }} />
               </div>
 
-              {/* Bio descriptive paragraph text */}
               <p className="text-slate-300 text-xs sm:text-md font-mono leading-relaxed tracking-wide font-light text-left w-full pt-1">
                 I view system architecture as a mirror to human architecture built on foundations of 
                 purpose, integrity, and growth. As a full-stack developer, I translate complex challenges 
@@ -198,7 +195,7 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
         className="text-center max-w-5xl mx-auto pt-6 mb-12 select-none uppercase px-2"
       >
         <div className="space-y-4 mb-6">
-          <p className="text-md sm:text-2xl md:text-3xl text-slate-300 font-black tracking-[0.1em] sm:tracking-[0.15em] inherit leading-tight">
+          <p className="text-sm sm:text-2xl md:text-3xl text-slate-300 font-black tracking-[0.1em] sm:tracking-[0.15em] inherit leading-tight">
             BUILDING RESILIENT SYSTEMS WITH PRECISION AND CLARITY.
           </p>
           <p className="text-xs sm:text-lg md:text-xl text-slate-400 font-bold tracking-[0.15em] sm:tracking-[0.2em]">
@@ -206,7 +203,6 @@ export default function Hero({ name = "Makayla Harrison", role = "Junior Develop
           </p>
         </div>
 
-        {/* SYSTEM DIVIDER UNDER INVITATION TEXT */}
         <div className="h-[2px] opacity-40 mx-auto w-full" style={{ background: hotHighlight }} />
       </Motion.div>
 
