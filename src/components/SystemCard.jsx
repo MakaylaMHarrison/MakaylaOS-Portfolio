@@ -34,7 +34,7 @@ export default function SystemCard({ title, id, currentActiveId, activePathTrigg
   const isDimmed = isAnyActive && !isActive;
 
   const handleInteractionStart = () => activePathTrigger && activePathTrigger(id);
-  const handleInteractionEnd = () => activePathTrigger && activePathTrigger(null);
+ // const handleInteractionEnd = () => activePathTrigger && activePathTrigger(null);
 
   return (
     <Motion.div
@@ -46,7 +46,7 @@ export default function SystemCard({ title, id, currentActiveId, activePathTrigg
       transition={{ duration: 0.4 }}
       whileHover={{ scale: 1.02, boxShadow: "0 0 25px rgba(34, 211, 238, 0.2)" }}
       onMouseEnter={handleInteractionStart}
-      onMouseLeave={handleInteractionEnd}
+      //onMouseLeave={handleInteractionEnd}
       onTouchStart={handleInteractionStart}
     >
       <HudCorners isActive={isActive} />

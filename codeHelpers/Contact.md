@@ -88,8 +88,6 @@ function HudHeader({ title, isActive }) {
             background: hotHighlight,
             backgroundSize: '200% 100%' 
           }}
-          
-          
         />
       </div>
     </div>
@@ -104,7 +102,7 @@ export default function ContactSection() {
   const [hoverEndpoints, setHoverEndpoints] = useState(false);
   const [hoverMessageBoard, setHoverMessageBoard] = useState(false);
 
- // ➔ Centralized endpoints configuration (Including your custom Resume vector configurations)
+  // Centralized endpoints configuration (3 active panels, GitHub omitted)
   const endpoints = [
     { 
       label: 'EMAIL', 
@@ -132,22 +130,22 @@ export default function ContactSection() {
         
         {/* ==================== SECTION TITLE HEADER ==================== */}
         <div className="mb-10 w-full flex flex-col items-center justify-center">
-            <div className="flex flex-row items-center text-left max-w-2xl gap-4">
-                <div className="bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-bold p-2 rounded-md text-xl shadow-[0_0_15px_rgba(34,211,238,0.1)] shrink-0">
-                    &gt;_
-                </div>
-                
-                <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white uppercase">
-                        ESTABLISH_CONNECTION
-                    </h2>
-                    <p className="text-sm text-slate-400 mt-1">
-                        Open a channel — Response latency typically &lt; 24h.
-                    </p>
-                </div>
+          <div className="flex flex-row items-center text-left max-w-2xl gap-4">
+            <div className="bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-bold p-2 rounded-md text-xl shadow-[0_0_15px_rgba(34,211,238,0.1)] shrink-0">
+              &gt;_
             </div>
+            
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white uppercase">
+                ESTABLISH_CONNECTION
+              </h2>
+              <p className="text-sm text-slate-400 mt-1">
+                Open a channel — Response latency typically &lt; 24h.
+              </p>
+            </div>
+          </div>
 
-          {/* Hero Inspired Centered Main Divider - Sized to 45% and actively loops a scan wave */}
+          {/* Hero Inspired Centered Main Divider */}
           <div className="w-[65%] shrink-0 overflow-hidden relative">
             <Motion.div 
               initial={{ width: 0 }}
@@ -159,12 +157,15 @@ export default function ContactSection() {
                 background: hotHighlight,
                 backgroundSize: '200% 100%'
               }}
-          
             />
           </div>
         </div>
 
         {/* ==================== HUD INTERFACE GRID ==================== */}
+        {/* Responsive Grid System handles viewport restructuring automatically:
+            - Stacks vertically as 1 column on mobile viewports (grid-cols-1)
+            - Breaks side-by-side as 2 columns on desktop displays (lg:grid-cols-2)
+        */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch w-full">
           
           {/* PANEL 1: AVAILABLE ENDPOINTS */}
@@ -176,10 +177,11 @@ export default function ContactSection() {
           >
             <HudCorners isActive={hoverEndpoints} />
             
+            {/* Custom Dot Matrix Border configuration preserved */}
             <div className={`flex-grow rounded-md p-5 border-2 border-dotted flex flex-col justify-between transition-all duration-300 bg-transparent
               ${hoverEndpoints ? 'border-cyan-400/60 shadow-[inset_0_0_15px_rgba(34,211,238,0.05)]' : 'border-white/10'}`}
             >
-              <HudHeader title=" AVAILABLE ENDPOINTS" isActive={hoverEndpoints} />
+              <HudHeader title="AVAILABLE ENDPOINTS" isActive={hoverEndpoints} />
 
               {/* Endpoint Link List Wrapper */}
               <div className="w-full flex-grow flex flex-col justify-center space-y-3.5 pt-6">
@@ -189,12 +191,14 @@ export default function ContactSection() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    download={item.isDocument ? true : undefined}
                     className="w-full bg-[#0a1424]/40 border border-slate-800/80 rounded-md p-3.5 flex items-center justify-between transition-all duration-300 hover:translate-x-1 hover:border-cyan-500/40 hover:bg-[#0a1424]/80 group"
                   >
                     <div className="min-w-0 flex-grow pr-2">
                       <div className="text-[10px] text-slate-500 font-bold tracking-wider uppercase group-hover:text-slate-400 transition-colors">
                         {item.label}
                       </div>
+                      {/* Responsive typography scaling dynamically prevents breaking the panel container width */}
                       <div className="text-white text-sm sm:text-base font-bold tracking-wide mt-0.5 truncate group-hover:text-cyan-400 transition-colors">
                         {item.value}
                       </div>
@@ -219,6 +223,7 @@ export default function ContactSection() {
           >
             <HudCorners isActive={hoverMessageBoard} />
 
+            {/* Custom Dot Matrix Border configuration preserved */}
             <div className={`flex-grow rounded-md p-5 border-2 border-dotted flex flex-col justify-between transition-all duration-300 bg-transparent
               ${hoverMessageBoard ? 'border-cyan-400/60 shadow-[inset_0_0_15px_rgba(34,211,238,0.05)]' : 'border-white/10'}`}
             >
@@ -249,7 +254,7 @@ export default function ContactSection() {
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder=" describe your request..."
+                    placeholder="describe your request..."
                     className="w-full bg-[#0a1424]/90 border border-slate-800 focus:border-cyan-500/60 rounded-md px-3 py-2 text-xs text-slate-200 placeholder-slate-600 outline-none transition-colors resize-none font-mono"
                   />
                 </div>
