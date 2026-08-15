@@ -6,7 +6,7 @@
 <!--Short Description -->
 > *MakaylaOS*: At the intersection of system design, system creation and impact.
 
-> ⚡A clean beautiful responsive portfolio engineered with an living interactive system-level sci-fi cyberpunk architecture!
+> ⚡A clean beautiful responsive portfolio engineered with living interactive system-level sci-fi cyberpunk architecture!
 
   
 <!--Live Link-->
