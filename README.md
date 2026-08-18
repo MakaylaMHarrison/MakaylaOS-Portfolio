@@ -43,10 +43,9 @@ This project was built using these technologies.
 - Vercel
 
 ## Features
- - **Custom Interactive Node Network:**
-    - ⚡ **Animated SVG Data Streams:** Real-time animated SVG paths and
-    data packets that display skill connections between client server and database nodes.
-    - ⚡ **Node Isolation:** Hovering over a skill node mutes surrounding nodes to highlight
+ ⚡ **Custom Interactive Node Network:** <br/>
+ &nbsp;&nbsp;&nbsp;&nbsp;⚡ **Animated SVG Data Streams:** Real-time animated SVG paths and data packets that display skill connections between client server and database nodes. <br/>
+ &nbsp;&nbsp;&nbsp;&nbsp; ⚡ **Node Isolation:**  Hovering over a skill node mutes surrounding nodes to highlight
  skill component and its connections.
 
 
@@ -61,11 +60,10 @@ This project was built using these technologies.
 </p>
 
 
-- **Live System Console & Modules:**
-  - ⚡ **Terminal Output:** Hovering over any project module shows the project data pipeline layers. That streams real-time logs
-    and system diagnostic directly into console output.
-  - ⚡ **Animated Data Flow:** Uses SVG paths with moving data packets to simulate stream processing from deployed modules into the
-    module output.
+
+⚡ **Live System Console & Modules:**<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;⚡ **Terminal Output:** Hovering over any project module shows the project data pipeline layers. That streams real-time logs and system diagnostic directly into console output.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;⚡ **Animated Data Flow:** Uses SVG paths with moving data packets to simulate stream processing from deployed modules into the module output.
 
 <!--Deployed Module gif-->
 <p align="left">
