@@ -1,7 +1,9 @@
 <!--Title-->
 <h2 align="center">
   Portfolio Website - v1.0.0
-
+  
+![Divider](https://github.com/Deri-Kurniawan/Deri-Kurniawan/raw/main/assets/images/horizontal-divider-gradient.gif)
+  
 
 <!--Short Description -->
 > *MakaylaOS*: At the intersection of system design, system creation and impact.
