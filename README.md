@@ -51,10 +51,10 @@ This project was built using these technologies.
 
 
 <!--Skill Gif-->
-<p align="center">
+<p align="left">
   <kdb>
     <a href="https://makaylaos.dev" target="_blank">
-      <img width="500" src="https://github.com/user-attachments/assets/1dfddf52-0e25-4df7-972d-0ffe453d18c4"
+      <img width="700" src="https://github.com/user-attachments/assets/1dfddf52-0e25-4df7-972d-0ffe453d18c4"
          alt="Untitled design"/>
     </a>
   </kdb>
@@ -68,10 +68,10 @@ This project was built using these technologies.
     module output.
 
 <!--Deployed Module gif-->
-<p align="center">
+<p align="left">
   <kbd>
     <a href="https://makaylaos.dev" target="_blank">
-      <img width="500" src="https://github.com/user-attachments/assets/b36f58d1-99a1-4e20-a364-4aae855fcc4d" alt="Project Sect" />
+      <img width="700" src="https://github.com/user-attachments/assets/b36f58d1-99a1-4e20-a364-4aae855fcc4d" alt="Project Sect" />
     </a>
   </kbd>
 </p>
