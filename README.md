@@ -44,6 +44,12 @@ This project was built using these technologies.
 - Vercel
 
 ## Features
+ - **Custom Interactive Node Network:**
+    - **Animated SVG Data Streams:** Real-time animated SVG paths and
+    data packets that display skill connections between client server and database nodes.
+    - **Node Isolation:** Hovering over a skill node mutes surrounding nodes to highlight
+ skill component and its connections.
+
 
 
 
