@@ -54,9 +54,7 @@ This project was built using these technologies.
 <p align="center">
   <kdb>
     <a href="https://makaylaos.dev" target="_blank">
-      <img width="648" <img width="1152" height="648" alt="prod sect" src="https://github.com/user-attachments/assets/a7f3016a-4d23-4554-b8ba-e29ceb23021b" />
-<img width="1152" height="648" alt="prod sect" src="https://github.com/user-attachments/assets/eb96f6a7-0d92-4aa0-81a8-d4c08c15d147" />
-src="https://github.com/user-attachments/assets/1dfddf52-0e25-4df7-972d-0ffe453d18c4"
+      <img width="500" src="https://github.com/user-attachments/assets/1dfddf52-0e25-4df7-972d-0ffe453d18c4"
          alt="Untitled design"/>
     </a>
   </kdb>
