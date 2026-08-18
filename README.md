@@ -16,16 +16,10 @@
   
 </h2>
 
-![Divider](https://github.com/Deri-Kurniawan/Deri-Kurniawan/raw/main/assets/images/horizontal-divider-gradient.gif)
-  
-
 <!--Mockup Image-->
 <div align="center">
     <img src="https://github.com/user-attachments/assets/9767a4e4-aa3e-43b0-91bf-0f00597a8e15" width="700" alt="mockup1"/>
 </div>
-
-![Divider](https://github.com/Deri-Kurniawan/Deri-Kurniawan/raw/main/assets/images/horizontal-divider-gradient.gif)
-  
 
 <!--badges-->
 
