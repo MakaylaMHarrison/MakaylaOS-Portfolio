@@ -50,6 +50,8 @@ This project was built using these technologies.
  &nbsp;&nbsp;&nbsp;&nbsp; ⚡ **Node Isolation:**  Hovering over a skill node mutes surrounding nodes to highlight
  skill component and its connections.
 
+ <p>&nbsp;</p>
+
 
 <!--Skill Gif-->
 <p align="left">
@@ -66,6 +68,8 @@ This project was built using these technologies.
 ⚡ **Live System Console & Modules:**<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;⚡ **Terminal Output:** Hovering over any project module shows the project data pipeline layers. That streams real-time logs and system diagnostic directly into console output.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;⚡ **Animated Data Flow:** Uses SVG paths with moving data packets to simulate stream processing from deployed modules into the module output.
+
+<p>&nbsp;</p>
 
 <!--Deployed Module gif-->
 <p align="left">
