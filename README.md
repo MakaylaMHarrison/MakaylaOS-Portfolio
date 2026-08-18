@@ -65,6 +65,7 @@ This project was built using these technologies.
 
 <p>&nbsp;</p>
 
+
 ⚡ **Live System Console & Modules:**<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;⚡ **Terminal Output:** Hovering over any project module shows the project data pipeline layers. That streams real-time logs and system diagnostic directly into console output.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;⚡ **Animated Data Flow:** Uses SVG paths with moving data packets to simulate stream processing from deployed modules into the module output.
@@ -81,6 +82,14 @@ This project was built using these technologies.
 </p>
 
 <p>&nbsp;</p>
+
+---
+
+## 🔒 License & Usage
+
+© 2026 Makayla Harrison. All rights reserved.
+
+This project and its original assets, designs, and source code are personal portfolio materials. **No permission is granted** to fork, copy, redistribute, or use any portion of this repository for personal or commercial projects without explicit written consent.
 
 
 
