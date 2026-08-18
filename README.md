@@ -16,10 +16,16 @@
   
 </h2>
 
+![Divider](https://github.com/Deri-Kurniawan/Deri-Kurniawan/raw/main/assets/images/horizontal-divider-gradient.gif)
+  
+
 <!--Mockup Image-->
 <div align="center">
     <img src="https://github.com/user-attachments/assets/9767a4e4-aa3e-43b0-91bf-0f00597a8e15" width="700" alt="mockup1"/>
 </div>
+
+![Divider](https://github.com/Deri-Kurniawan/Deri-Kurniawan/raw/main/assets/images/horizontal-divider-gradient.gif)
+  
 
 <!--badges-->
 
@@ -63,7 +69,7 @@ This project was built using these technologies.
   </kdb>
 </p>
 
-
+<p>&nbsp;</p>
 
 ⚡ **Live System Console & Modules:**<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;⚡ **Terminal Output:** Hovering over any project module shows the project data pipeline layers. That streams real-time logs and system diagnostic directly into console output.<br/>
@@ -80,6 +86,7 @@ This project was built using these technologies.
   </kbd>
 </p>
 
+<p>&nbsp;</p>
 
 
 
