@@ -191,7 +191,7 @@ export default function ContactSection() {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    download={item.isDocument ? true : undefined}
+                    {...(item.isDocument ? { download: true } : {})}
                     className="w-full bg-[#0a1424]/40 border border-slate-800/80 rounded-md p-3.5 flex items-center justify-between transition-all duration-300 hover:translate-x-1 hover:border-cyan-500/40 hover:bg-[#0a1424]/80 group"
                   >
                     <div className="min-w-0 flex-grow pr-2">
