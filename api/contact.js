@@ -17,7 +17,7 @@ Resend(procress.env.RESEND_API_KEY);
         data,
       });
     } catch (error) {
-      return res.status(500)json({
+      return res.status(500).json({
         success: false,
         error: error.message,
       });
