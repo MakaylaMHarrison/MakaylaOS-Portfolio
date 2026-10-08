@@ -5,7 +5,7 @@ Resend(process.env.RESEND_API_KEY);
   
   export default async function handler(req, res) {
     try {
-      const data = await respend.emails.send({
+      const data = await resend.emails.send({
         from: "onboarding@resend.dev",
         to: "makaylamh.93@gmail.com",
         subject: "MakaylaOS Test Email",
