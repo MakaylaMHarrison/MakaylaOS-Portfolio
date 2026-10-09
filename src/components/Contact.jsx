@@ -101,6 +101,30 @@ export default function ContactSection() {
   // Independent hover states for each card component
   const [hoverEndpoints, setHoverEndpoints] = useState(false);
   const [hoverMessageBoard, setHoverMessageBoard] = useState(false);
+  const handleSubmit = asnyc (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headsers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          message,
+        }),
+     });
+     const data = await response.json();
+
+     console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+                                                              
+                                                  
+             
 
   // Centralized endpoints configuration (3 active panels, GitHub omitted)
   const endpoints = [
