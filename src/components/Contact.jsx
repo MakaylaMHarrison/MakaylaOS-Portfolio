@@ -97,17 +97,21 @@ function HudHeader({ title, isActive }) {
 export default function ContactSection() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
   
   // Independent hover states for each card component
   const [hoverEndpoints, setHoverEndpoints] = useState(false);
   const [hoverMessageBoard, setHoverMessageBoard] = useState(false);
-  const handleSubmit = asnyc (e) => {
+            
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus("TRANSMITTING...");
+              
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headsers: {
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -116,10 +120,18 @@ export default function ContactSection() {
         }),
      });
      const data = await response.json();
-
-     console.log(data);
+     if (response.ok && data.success) {
+        setStatus("TRANSMISSION SUCCESSFUL");
+        setEmail('');
+        setMessage('');
+     } else {
+       setStatus(`ERROR: ${data.error || 'Failed To Transmit'}`);
+     }
+    
+    
     } catch (error) {
-      console.error(error);
+     console.error(error);
+      setStatus("TRANSMISSION FAILED");
     }
   };
                                                               
@@ -254,7 +266,7 @@ export default function ContactSection() {
               <HudHeader title="TRANSMIT MESSAGE" isActive={hoverMessageBoard} />
 
               {/* Form Controls Container */}
-              <form className="w-full flex-grow flex flex-col justify-center space-y-4 pt-5 pb-3">
+              <form onSubmit={handleSubmit} className="w-full flex-grow flex flex-col justify-center space-y-4 pt-5 pb-3">
                 <div className="w-full text-left">
                   <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5 pl-0.5">
                     SENDER.EMAIL
@@ -282,7 +294,7 @@ export default function ContactSection() {
                     className="w-full bg-[#0a1424]/90 border border-slate-800 focus:border-cyan-500/60 rounded-md px-3 py-2 text-xs text-slate-200 placeholder-slate-600 outline-none transition-colors resize-none font-mono"
                   />
                 </div>
-              </form>
+              
 
               {/* Action Trigger Button */}
               <div className="w-full">
@@ -296,6 +308,14 @@ export default function ContactSection() {
                   TRANSMIT
                 </button>
               </div>
+            </form>
+
+            {/* Status readout feedback line */}
+            {status && (
+                <div className= "text-center text-[10px] tracking-wider text-cyan-400 mt-2 font-bold animate-pulse">
+                 {status}
+                </div>
+            )}
 
             </div>
           </Motion.div>
